@@ -1,0 +1,10 @@
+include ./partials/header 
+	div.row
+		div.col-md-12
+			form(action="/forgot" method="POST")
+				legend Elfelejtett Jelszó
+				div.form-group
+					label(for="email") Email-cím
+					input.form-control(type="email" name="email" autofocus)
+				div.form-group
+					input.btn.btn-primary(type="submit" value="Jelszo valtoztatas")

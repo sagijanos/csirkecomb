@@ -1,0 +1,14 @@
+include ../partials/header
+div.container
+    div.row
+        h1.text-center Edit this comment
+        div(style="width: 30%; margin: 25px auto;")
+            form(action='/blogs/' + camp_id + '/comments/' + comment._id + '?_method=PUT'  method='POST')
+                div.form-group
+                    input.form-control(type='text' name='text' value= comment.text)
+                div.form-group
+                    button.btn.btn-lg.btn-danger.btn-block Submit!
+            a(href='/blogs') back
+        
+    
+include ../partials/footer

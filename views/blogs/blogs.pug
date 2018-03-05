@@ -1,0 +1,19 @@
+include ../partials/header 
+div.container
+    header.jumbotron
+        div.container
+            h1 Üdvözöllek a Csirkecombon!
+            p Osszd meg bizonyságaidat vagy csak nézd meg másét 
+            p
+                a.btn.btn-primary.btn-lg(href='/blogs/new') Új post hozzáadása
+    div.row.text-center(style="display:flex; flex-wrap: wrap;")
+        each item in blogs
+            div.col-md-3.col-sm-6 
+                div.thumbnail
+                    img('src'=item.image)
+                    div.caption
+                        h4= item.name
+                    p
+                        a(href='/blogs/' + item._id class="btn btn-primary") Több info
+        
+include ../partials/footer

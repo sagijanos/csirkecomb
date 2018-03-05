@@ -1,0 +1,14 @@
+include ../partials/header
+div.container
+    div.row
+        h1.text-center Add new comment to #{blogs.name}
+        div(style="width: 30%; margin: 25px auto;")
+            form(action='/blogs/' + blogs._id + '/comment'  method='POST')
+                div.form-group
+                    input.form-control(type='text' name='text' placeholder='text')
+                div.form-group
+                    button.btn.btn-lg.btn-danger.btn-block Submit!
+            a(href='/blogs') back
+        
+    
+include ../partials/footer

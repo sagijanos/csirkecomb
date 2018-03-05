@@ -1,0 +1,13 @@
+include ./partials/header 
+    div.row
+        div.col-md-12
+            form(action="/reset/" + token  method="POST")
+            legend Új jelszó
+            div.form-group
+                label(for="password") Új jelszó
+                input(type="password" name="password" value="" placeholder="Új jelszó" autofocus="autofocus" class="form-control")
+            div.form-group
+                label(for="confirm") Jelszó mégegyszer
+                input(type="password" name="confirm" value="" placeholder="Jelszó mégegyszer" class="form-control")
+            div.form-group
+                button(type="submit" class="btn btn-primary") Jelszó frissitése

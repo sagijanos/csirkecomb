@@ -1,0 +1,25 @@
+include ./partials/header
+h1.login-title Regisztrálj
+div.form-div
+	form(action="/register" method="POST")
+		div.form-group
+			input.form-control(type="text" name="username" placeholder="felhasználó név")
+		div.form-group
+			input.form-control(type="text" name="firstname" placeholder="Kereszt név")
+		div.form-group
+			input.form-control(type="text" name="lastname" placeholder="Vezeték név")
+		div.form-group
+			input.form-control(type="email" name="email" placeholder="email-cím")
+		div.form-group
+			input.form-control(type="etext" name="avatar" placeholder="profilkep url")
+		div.from-group
+			input.form-control(type="password" name="password" placeholder="jelszó")
+		div.from-group
+			br
+			input.form-control(type="password" name="adminCode" placeholder="Admin Code")
+		div.form-group
+			br
+			button.btn.btn-lg.btn-primary.btn-block Mehet 
+
+
+

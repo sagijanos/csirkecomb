@@ -1,0 +1,61 @@
+include ../partials/header 
+div.container
+    div.row
+        div.col-md-3
+            p Yelpcamp
+            div.list-group
+                li.list-group-item info 1
+                li.list-group-item info 2
+                li.list-group-item info 3
+        div.col-md-9
+            div.thumbnail
+                img('src'=blog.image class="img-responsive")
+                div.caption
+                    h4.pull-right
+                    a
+                        h4= blog.name
+                    p= blog.description
+                    a(href="/users/" + blog.author.id)
+                        p ezt #{blog.author.username} 
+                    p készítette: #{moment(blog.createdAt).fromNow()}
+                if currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin
+                        a.btn.btn-success.btn-md(href="/blogs/" +blog._id + "/edit") Edit blog
+                        form(action="/blogs/" + blog._id + "?_method=DELETE" method="POST" id="delete-form")
+                            button.btn.btn-danger Delete
+            div.well
+                div.text-right
+                    a.btn.btn-success.pull-right(role="button" data-toggle="collapse" href="#collapseComment"  aria-expanded="false" aria-controls="collapseComment")
+                        span.glyphicon.glyphicon-plus(aria-hidden="true") Új hozzászolás
+                h4 Hozzászólások
+                <!--Collapse Add a comment form START-->
+                div.collapse(id="collapseComment")
+                    div.well(style="border-left: 5px solid #00C851;")
+                        if !currentUser
+                            h5 You need to login before you can comment.
+                            a(href="/login") Click here to go to the login page.
+                        if currentUser
+                            h4 Write your comment 
+                            form(id="add-comment-form" action="/blogs/" + blog._id + "/comment" method="POST")
+                                div.form-group
+                                    input(class="form-control" type="text" disabled 
+                                    value=currentUser.username)
+                                div.form-group
+                                    textarea(class="form-control" name="text" placeholder="Write your comment..." form="add-comment-form" rows="5" cols="70")
+                                div.form-group
+                                    button.btn.btn-success.btn-sm Comment 
+                                    span(class="glyphicon glyphicon-comment" aria-hidden="true")
+                    <hr>
+                    if blog.comments.length === 0 
+                        em(style="color: grey;") No comments yet.
+                    each comment in blog.comments
+                        div.row
+                            div.col-md-12
+                                strong
+                                    if currentUser && currentUser._id.equals(comment.author.id)
+                                        span(style="color: orange;" class="glyphicon glyphicon-user" aria-hidden="true")
+
+                                    else
+                                        span(class="glyphicon glyphicon-user" aria-hidden="true") #{comment.author.username}
+                                span(class="pull-right") #{moment(comment.createdAt).fromNow()}
+                                p #{comment.text}
+include ../partials/footer

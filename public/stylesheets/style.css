@@ -1,8 +1,38 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+thumbnail img {
+    width: 100%;
 }
 
-a {
-  color: #00B7FF;
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+.item a{
+	color: #000;
+}
+.item{
+	float: right!important;
+    margin-right: 15px;
+    list-style-type: none;
+    padding-top: 15px;
+}
+
+.item a:hover{
+	text-decoration: none;
+}
+
+#delete-form{
+	display: inline;
+	padding: 4px;
+}
+/* Login CSS*/
+.login-title{
+	text-align: center;
+}
+.form-div{
+	width: 30%;
+	margin: 25px auto;
 }
