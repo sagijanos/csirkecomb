@@ -3,19 +3,37 @@ var router = express.Router();
 var Blog = require("../models/blog");
 var middleware = require("../middleware");//var middleware = require("../middleware")//itt azert nincs tovabbi fajl mert ha index.js a neve akkor auto tudja az express hogy az az.
 
+// Define escapeRegex function for search feature
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
+//INDEX - show all posts
 router.get("/blogs", function(req, res){
-    Blog.find({}, function(err, allBlogs){
-    	// itt keresi meg az osszes camp-et mert nem adtal meg neki semmit
-    	// --{} ez jelent mindent.
-    	if(err){
-    		console.log(err);
-    	} else {
-    		res.render("blogs/blogs.pug", {blogs: allBlogs});
-    	}
-    });
-    // amit utanna kiforgatsz ezen az ut vonalon 
-    // itt rendereled azt az oldalt ahol az arrayed van!!!!
-        
+	var noMatch = null;
+  if(req.query.search) {
+      const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+      // Get all posts from DB
+      Blog.find({name: regex}, function(err, allBlogs){
+         if(err){
+            console.log(err);
+         } else {
+         	if(allBlogs.length < 1){
+         		noMatch = "Sajnos nincs ilyen bejegyzés kérlek próbálkozz újra"
+         	}
+            res.render("blogs/blogs",{blogs: allBlogs, noMatch: noMatch});
+         }
+      });
+  } else {
+      // Get all campgrounds from DB
+      Blog.find({}, function(err, allBlogs){
+         if(err){
+             console.log(err);
+         } else {
+         	res.render("blogs/blogs",{blogs: allBlogs});
+         }
+      });
+  }
 });
 
 router.post("/blogs", middleware.isLoggedin, function(req, res){
@@ -98,5 +116,11 @@ router.delete("/blogs/:id", middleware.checkBlogOwnership, function(req, res){
 		}
 	});
 });
+// itt van a regex amit meg mondja hogy mi fer 
+function escapeRegex(text){
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
+
 
 module.exports = router;
