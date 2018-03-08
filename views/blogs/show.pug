@@ -1,27 +1,22 @@
 include ../partials/header 
-div.container
+div.container-fluid
     div.row
-        div.col-md-3
-            p Yelpcamp
-            div.list-group
-                li.list-group-item info 1
-                li.list-group-item info 2
-                li.list-group-item info 3
-        div.col-md-9
-            div.thumbnail
-                img('src'=blog.image class="img-responsive")
-                div.caption
-                    h4.pull-right
-                    a
-                        h4= blog.name
-                    p= blog.description
-                    a(href="/users/" + blog.author.id)
-                        p ezt #{blog.author.username} 
-                    p készítette: #{moment(blog.createdAt).fromNow()}
-                if currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin
-                        a.btn.btn-success.btn-md(href="/blogs/" +blog._id + "/edit") Edit blog
-                        form(action="/blogs/" + blog._id + "?_method=DELETE" method="POST" id="delete-form")
-                            button.btn.btn-danger Delete
+        div.col-md-12
+            h1.blog-name #{blog.name}
+            a(href="/users/" + blog.author.id)
+                p.blog-author #{blog.author.username} 
+            img('src'=blog.image class="img-responsive header-img")
+            div.row
+                div.container
+                    div.col-md-12
+                        p.blog-desc #{blog.description}
+            a(href="/users/" + blog.author.id)
+            p ezt #{blog.author.username} 
+            p készítette: #{moment(blog.createdAt).fromNow()}
+            if currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin
+                    a.btn.btn-success.btn-md(href="/blogs/" +blog._id + "/edit") Edit blog
+                    form(action="/blogs/" + blog._id + "?_method=DELETE" method="POST" id="delete-form")
+                        button.btn.btn-danger Delete
             div.well
                 div.text-right
                     a.btn.btn-success.pull-right(role="button" data-toggle="collapse" href="#collapseComment"  aria-expanded="false" aria-controls="collapseComment")

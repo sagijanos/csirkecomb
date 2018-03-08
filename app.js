@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -13,9 +15,11 @@ var User = require("./models/user");
 var mongoose = require('mongoose');
 var methodOverride = require("method-override");
 var flash = require('connect-flash');
+var moment = require('moment');
 
 // configure dotenv
 require('dotenv').load();
+moment().format();
 
 var index = require('./routes/index');
 var users = require('./routes/users');

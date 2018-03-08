@@ -1,12 +1,32 @@
 include ./partials/header
-h1.login-title Jelentkezz be
-div.form-div
-	form(action="/login" method="POST")
-		div.form-group
-			input.form-control(type="text" name="username" placeholder="felhasználó név")
-		div.form-group
-			input.form-control(type="password" name="password" placeholder="jelszó")
-		div.form-group
-			button.btn.btn-lg.btn-primary.btn-block Bejelentkezés
+div.container-fluid
+    div.row
+        div.col-md-7.left
+            div.container.left-content
+                div.row
+                    div.col-md-7
+                        h1.left.title Üdvözöllek
+                        h3.left.head Regisztrálj a csirkecomb honlapján
+                        h5.left-head-content A csirkecomb egy olyan oldal ahol megtudod osztani a bizonyságaidat a barátaiddal, hogy bátoríthasd őket. Ez a honlap azért jött létre mert fontosnak tartjuk, hogy egy közösség jöjjön létre erre. Ha még nem regisztráltál akkor tedd meg és utánna oszd meg amit isten veled tett. Ez a honlap azért jött létre mert fontosnak tartjuk, hogy egy közösség jöjjön létre erre. Ha még nem regisztráltál akkor tedd meg és utánna oszd meg amit isten veled tett.
+                        a(href="/register")
+                            button.btn.btn-lg.btn-primary.sign-up Regisztrálok  
+        div.col-md-5.right
+            h3.login-title Vagy jelentkezz be itt
+            div.form-div
+                form(action="/login" method="POST")
+                    div.form-group
+                        input.form-control(type="text" name="username" placeholder="felhasználó név")
+                    div.form-group
+                        input.form-control(type="password" name="password" placeholder="jelszó")
+                    div.form-group
+                        button.btn.btn-lg.btn-primary.sign-in Bejelentkezés
+            a(href="/forgot") 
+                p.forgot Elfelejtetted a jelszódat?
+            div.container
+                if error && error.length > 0 
+                    div.alert.alert-danger(role="alert") #{error} 
+            div.container  
+                if success && success.length > 0
+                    div.alert.alert-success(role="alert") #{success}
 
 

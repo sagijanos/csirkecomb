@@ -1,21 +1,21 @@
 include ../partials/header 
+div.row
+    div.col-md-3
+    div.col-md-6.profile-details 
+        div.circle-person(id="user-avatar" class="user-avatar" style="background: url(" + user.avatar + ")")
+        h4.user-name #{user.firstname + " " + user.lastname} <span><a href="#"> <i class="fa fa-pencil"></i></span></a> 
+    div.col-md-3 
+        p 
+div.row
+    div.col-md-4
+        h6.user-name #{user.username} bejegyzései
+div.row.text-center(style="display:flex; flex-wrap: wrap;")
+    each item in blog
+        div.col-md-3.col-sm-6 
+            div.thumbnail
+                img('src'=item.image)
+                div.caption
+                    a(href="/blogs/" + item._id)
+                        h4= item.name
 
-    div.row
-        div.col-md-4
-            h1= user.firstname + " " + user.lastname 
-            img('src'=user.avatar class="img-responsive")
-        div.col-md-8
-            p Lorem Ipsum egy egyszerû szövegrészlete, szövegutánzata a betûszedõ és nyomdaiparnak. A Lorem Ipsum az 1500-as évek óta standard szövegrészletként szolgált az iparban; mikor egy ismeretlen nyomdász összeállította a betûkészletét és egy Ipsum egy egyszerû szövegrészlete, szövegutánzata a betûszedõ és nyomdaiparnak. A Lorem Ipsum az 1500-as évek óta standard szövegrészletként szolgált az iparban; mikor egy ismeretlen nyomdász összeállította a betûkészletét és egy
-
-    div.row
-        div.col-md-4
-            h3 #{user.username} bejegyzései
-    
-    div.row.text-center(style="display:flex; flex-wrap: wrap;")
-        each item in blog
-            div.col-md-3.col-sm-6 
-                div.thumbnail
-                    img('src'=item.image)
-                    div.caption
-                        a(href="/blogs/" + item._id)
-                            h4= item.name
+include ../partials/footer

@@ -4,6 +4,7 @@ var blogSchema = new mongoose.Schema({
 	name: String,
 	image: String,
 	description: String,
+	subname: String,
 	createAt: {type: Date, default: Date.now},
 	author: {
 		id: {

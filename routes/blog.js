@@ -3,14 +3,11 @@ var router = express.Router();
 var Blog = require("../models/blog");
 var middleware = require("../middleware");//var middleware = require("../middleware")//itt azert nincs tovabbi fajl mert ha index.js a neve akkor auto tudja az express hogy az az.
 
-// Define escapeRegex function for search feature
-function escapeRegex(text) {
-    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-};
 
 //INDEX - show all posts
 router.get("/blogs", function(req, res){
 	var noMatch = null;
+  var time = req.body.createAt
   if(req.query.search) {
       const regex = new RegExp(escapeRegex(req.query.search), 'gi');
       // Get all posts from DB
@@ -25,39 +22,36 @@ router.get("/blogs", function(req, res){
          }
       });
   } else {
-      // Get all campgrounds from DB
-      Blog.find({}, function(err, allBlogs){
-         if(err){
-             console.log(err);
-         } else {
-         	res.render("blogs/blogs",{blogs: allBlogs});
-         }
-      });
-  }
-});
+      // Get all campgrounds from DB // Ez mar pagination 
+      // itt ezt meg old meg hogy a legfrissebb keruljon elore mindig
+      Blog.find({}, function (err, allBlogs) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("blogs/blogs", { blogs: allBlogs} );
+            }
+        });
+    }
+});// ez a vege a teljes route-nak
 
 router.post("/blogs", middleware.isLoggedin, function(req, res){
-    var name = req.body.name
-    var image = req.body.image
-    var description = req.body.description
-    // itt adod hozza a usert a camphez
-    var author = {
-        id: req.user._id,
-        username: req.user.username
-    }
-    var newBlog = {name: name, image: image, description: description, author: author}
-    Blog.create(newBlog, function(err, newlyCreated){
-        if(err){
-            console.log(err);
-        } else {
-             // arra az oldalra ahol meg kell jeleniteni  cuccot a db-bol
-             console.log(newlyCreated);
-             res.redirect("/blogs");
-        }
-    });
-   
+  var name = req.body.name;
+  var image = req.body.image;
+  var description = req.body.description;
+  var author = {
+      id: req.user._id,
+      username: req.user.username
+  }
+  var newblog = {name: name, image: image, description: description, author:author}
+  Blog.create(newblog, function(err, newly){
+    if(err){
+      console.log(err);
+    } else {
+      console.log(newly);
+      res.redirect("/blogs");
+    } 
+  })
 });
-
 
 
 router.get("/blogs/new", middleware.isLoggedin, function(req, res){

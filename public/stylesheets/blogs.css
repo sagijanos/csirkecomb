@@ -1,0 +1,105 @@
+body{
+	background-color: #2A2F38;
+}
+.nomatch{
+	color: #fff;
+}
+.post-title{
+	text-align: left;
+	color: #fff;
+}
+#showmore{
+	background-color: transparent;
+	color: #fff;
+	border-color: transparent;
+	margin-bottom: 200px;
+}
+.inner-container{
+	margin-left: 5%;
+}
+.post-content{
+	color: #848484;
+	margin-left: 1%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.time{
+	color: #545454;
+	margin-left: 1%;
+	margin-top: 50px;
+}
+.person{
+	color: #545454;
+	margin-left: 1%;
+}
+.personal-text{
+	list-style-type: none;
+	margin-left: -40px;
+
+}
+.personal-text li {
+	display: inline-block;
+	color: #545454;
+	padding-left: 10px;
+
+}
+li:nth-child(3n){
+	padding-left: 3px;
+}
+
+.jumbotron{
+	background-color: #2A2F38;
+}
+
+
+
+.blog-name{
+	text-align: center;
+	color: #fff;
+	margin-top: 10%;
+}
+.blog-author{
+	color: #fff;
+	text-align: center;
+
+}
+.blog-desc{
+	color: #fff;
+	text-align: center;
+}
+
+.header-img{
+	width: 100%;
+	margin-top: 10%;
+}
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

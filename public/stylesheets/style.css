@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+body{
+	font-family: 'Ubuntu', sans-serif;
+}
 thumbnail img {
     width: 100%;
 }
@@ -23,16 +27,220 @@ thumbnail img {
 .item a:hover{
 	text-decoration: none;
 }
+.container-fluid{
+	background-color: #2A2F38;
+}
+.form-control{
+	background-color: transparent;
+	color: #fff;
+	border-top: 0px solid transparent;
+	border-left: 0px solid transparent;
+	border-right: 0px solid transparent;
+	border-bottom: 1px solid #fff;
+    border-radius: 0px;
+    -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.0);
+    box-shadow: inset 0 0px 0px rgba(0,0,0,.0);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.form-control::placeholder {
+  color: #CDDFDB ;
+}
+
+.form-control:focus {
+    border-color: transparent;
+    outline: 0;
+    -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,0.0), 0 0 0px rgba(0,0,0,0.0);
+    box-shadow: inset 0 0px 0px rgba(0,0,0,0.0), 0 0 0px rgba(0,0,0,0.0);
+}
+
 
 #delete-form{
 	display: inline;
 	padding: 4px;
 }
+.sign-in{
+	background-color: #fff;
+	color: #00A876;
+	border-radius: 0px;
+	border-color: transparent; 
+	margin-top: 4%;
+}
+.sign-in:hover{
+	background-color: #fff;
+	color: #00A876;
+}
+
+
+.sign-up{
+	background-color: #00A876;
+	color: #fff; 
+	margin-top: 25px;
+	border-radius: 0px;
+	border-color: transparent; 
+	margin-bottom: 30.4%;
+}
+.sign-up:hover{
+	background-color: #00A876;
+	color: #fff;
+
+}
 /* Login CSS*/
 .login-title{
-	text-align: center;
+	margin-left: 3%;
+	font-weight: 100;
+	color: #fff;
 }
+input{
+	background-color: transparent !important;
+}
+a:hover{
+	text-decoration: none;
+}
+.forgot{
+	color: #B6D2BC;
+	margin-top: -18px;
+	margin-left: 4%;
+}
+.left.title{
+	color: #fff;
+}
+.left.head{
+	color:  #808080;
+	font-weight: 100;
+	padding-bottom: 25px;
+	margin-top: -5px;
+}
+.left-head-content{
+	color:#808080;
+	line-height: 20px;
+	letter-spacing: 0px;
+}
+
+
 .form-div{
-	width: 30%;
-	margin: 25px auto;
+	width: 70%;
+
 }
+.right{
+	background-color: #00A876;
+	padding-top: 20%;
+	padding-bottom: 20%;
+}
+.left{
+	background-color: #2A2F38;
+}
+.container.left-content{
+	margin-top: 31%;
+}
+/* Sign UP CSS****************************************/
+
+.sign-up-page-btn{
+	background-color: #0a5c15;
+	color: #fff;
+	font-size: 15px;
+	border-color: transparent;
+}
+.sign-up-page-btn:hover{
+	background-color: #fff;
+	color: #00A876;
+}
+.already-btn{
+	background-color: #242424;
+	color: #fff;
+	font-size: 10px;
+	letter-spacing: 1px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.already-btn:hover{
+	background-color: #242424;
+	color: #fff;
+}
+.form-group {
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+.password{
+	padding-bottom: 25px;
+	margin-left: 20px;
+}
+.admin{
+	padding-bottom: 5px;
+	margin-left: 20px;
+}
+.admin-code-title{
+	color: #CDDFDB;
+	font-size: 13px;
+	margin-left: 3%;
+	margin-top: 1%;
+
+}
+
+
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: 0px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    /* background-color: #286090; */
+    border-color: transparent;
+}
+
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+}
+.btn-lg {
+    padding: 10px 16px;
+    line-height: 1.3333333;
+    border-radius: 0px;
+}
+.profile-details{
+	margin-top: 5%;
+}
+.user-name{
+	color: #fff;
+	margin-left: 3%;
+}
+#user-avatar{
+	height: 125px;
+	width: 125px;
+	border-radius: 50%;
+	background-size: cover !important;
+}
+
+
+/* Sign UP CSS****************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

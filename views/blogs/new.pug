@@ -1,18 +1,24 @@
 include ../partials/header
 div.container
     div.row
-        h1.text-center Create a New blog
-        div(style="width: 30%; margin: 25px auto;")
+        h1.text-center.create Készíts egy új bejegyzést
+        div(style="width: 60%; margin: 25px auto;")
             form(action='/blogs' method='POST')
                 div.form-group
-                    input.form-control(type='text' name='name' placeholder='name')
+                    label(for="name") Bejegyzés címe
+                    input.form-control(type='text' name='name' placeholder='')
                 div.form-group
-                    input.form-control(type='text' name='image' placeholder='image url')
+                    label(for="subname") Bejegyzés alcíme
+                    input.form-control(type='text' name='subname' placeholder='')
                 div.form-group
-                    input.form-control(type='text' name='description' placeholder='description')
+                    label(for="image")  Fő kép
+                    input.form-control(type='text' pattern="^https:\/\/images\.unsplash\.com\/.*" title="Csak az unsplash.com-ról tudsz feltenni képet lásd alul a linken" name='image' id="image" placeholder="https://images.unsplash.com/...")
+                    <small>Kattints <a href="https://youtu.be/Bn3weNRQRDE">ide</a> hogy megnézd hogy kell az url linket bemásolni</small>
                 div.form-group
-                    button.btn.btn-lg.btn-danger.btn-block Submit!
-            a(href='/blogs') back
+                    textarea(name="description" rows="10" cols="95")
+                div.form-group
+                    button.btn.btn-lg.btn-danger Létrehozom!
+                a.back(href='/blogs') vissza
         
     
 include ../partials/footer

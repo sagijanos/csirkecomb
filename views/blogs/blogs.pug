@@ -1,27 +1,23 @@
 include ../partials/header 
 div.container
     header.jumbotron
-        div.container
-            h1 Üdvözöllek a Csirkecombon!
-            p Osszd meg bizonyságaidat vagy csak nézd meg másét 
-            p
-                a.btn.btn-primary.btn-lg(href='/blogs/new') Új post hozzáadása
-            p
-                form.form-inline(action="/blogs" method="GET")
-                    div.form-group
-                        input.form-control(type="text" name="search" placeholder="bejegyzés keresése")
-                        input.form-control(type="submit" value="Search" class="btn btn-default")
-    div.row.text-center(style="display:flex; flex-wrap: wrap;")
-        div.col-md-12
-            if noMatch !== null
-                h3=noMatch 
-        each item in blogs
-            div.col-md-3.col-sm-6 
-                div.thumbnail
-                    img('src'=item.image)
-                    div.caption
-                        h4= item.name
-                    p
-                        a(href='/blogs/' + item._id class="btn btn-primary") Több info
-        
+    div.container  
+        div.row
+            div.container.inner-container
+                div.col-md-12
+                    if noMatch !== null
+                        h3.nomatch #{noMatch}
+                each item in blogs
+                    div.container
+                        div.col-md-12.col-sm-12
+                            ul.personal-text
+                                li #{moment(item.createAt).fromNow()}
+                                li 
+                                    i.fa.fa-user
+                                li #{item.author.username}
+                            div.caption
+                                h1.post-title #{item.name}
+                            h6.post-content #{item.description.substring(0, 100)}
+                            p
+                                a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
 include ../partials/footer
