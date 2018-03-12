@@ -7,6 +7,12 @@ var UserSchema = mongoose.Schema({
 	avatar: String,
 	firstname: String,
 	lastname: String,
+	person: {
+		id: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "User"
+		}
+	},
 	email: {type: String, unique: true, required: true},
 	resetPasswordToken: String,
     resetPasswordExpires: Date,

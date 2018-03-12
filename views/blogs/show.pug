@@ -3,54 +3,55 @@ div.container-fluid
     div.row
         div.col-md-12
             h1.blog-name #{blog.name}
+            h3.blog-subname #{blog.subname}
             a(href="/users/" + blog.author.id)
-                p.blog-author #{blog.author.username} 
+                p.blog-author #{blog.author.username}
+            p.blog-date készítette: #{moment(blog.createAt).fromNow()} 
             img('src'=blog.image class="img-responsive header-img")
             div.row
-                div.container
+                div.container.desc-container
                     div.col-md-12
                         p.blog-desc #{blog.description}
-            a(href="/users/" + blog.author.id)
-            p ezt #{blog.author.username} 
-            p készítette: #{moment(blog.createdAt).fromNow()}
+            a(href="/users/" + blog.author.id) 
             if currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin
-                    a.btn.btn-success.btn-md(href="/blogs/" +blog._id + "/edit") Edit blog
                     form(action="/blogs/" + blog._id + "?_method=DELETE" method="POST" id="delete-form")
-                        button.btn.btn-danger Delete
-            div.well
-                div.text-right
-                    a.btn.btn-success.pull-right(role="button" data-toggle="collapse" href="#collapseComment"  aria-expanded="false" aria-controls="collapseComment")
-                        span.glyphicon.glyphicon-plus(aria-hidden="true") Új hozzászolás
-                h4 Hozzászólások
+                        button.btn.btn-danger.delete Delete
+                    a.btn.btn-success.btn-md.edit(href="/blogs/" +blog._id + "/edit") Edit blog
+
+            div.container-comment
+                div.row
+                    div.col-md-2
+                        div.add-comment-btn
+                          h4.comment-title Hozzászólások
+                    div.col-md-2
+                        div.add-comment-btn
+                            a.btn.btn-success.add-comment(role="button" data-toggle="collapse" href="#collapseComment"  aria-expanded="false" aria-controls="collapseComment")
+                                i.fa.fa-comment(aria-hidden="true")
                 <!--Collapse Add a comment form START-->
                 div.collapse(id="collapseComment")
-                    div.well(style="border-left: 5px solid #00C851;")
+                    div.well
                         if !currentUser
-                            h5 You need to login before you can comment.
-                            a(href="/login") Click here to go to the login page.
+                            h5  Jelentkezz be ha hozzá szeretnél szólni.
+                            a(href="/login") Kattints ide hogy be tudj jelentkezni.
                         if currentUser
-                            h4 Write your comment 
+                            h4 Írj hozzászolást 
                             form(id="add-comment-form" action="/blogs/" + blog._id + "/comment" method="POST")
                                 div.form-group
                                     input(class="form-control" type="text" disabled 
                                     value=currentUser.username)
                                 div.form-group
-                                    textarea(class="form-control" name="text" placeholder="Write your comment..." form="add-comment-form" rows="5" cols="70")
+                                    textarea(class="form-control" name="text" placeholder="hozzászólok..." form="add-comment-form" rows="5" cols="70")
                                 div.form-group
-                                    button.btn.btn-success.btn-sm Comment 
-                                    span(class="glyphicon glyphicon-comment" aria-hidden="true")
+                                    button.btn.btn-success.btn-sm Hozzáadom 
                     <hr>
-                    if blog.comments.length === 0 
-                        em(style="color: grey;") No comments yet.
-                    each comment in blog.comments
-                        div.row
+                if blog.comments.length === 0 
+                    em(style="color: grey;") Még nincs hozzászólás.
+                each comment in blog.comments
+                    div.row
+                        div.container.container-content
                             div.col-md-12
-                                strong
-                                    if currentUser && currentUser._id.equals(comment.author.id)
-                                        span(style="color: orange;" class="glyphicon glyphicon-user" aria-hidden="true")
-
-                                    else
-                                        span(class="glyphicon glyphicon-user" aria-hidden="true") #{comment.author.username}
-                                span(class="pull-right") #{moment(comment.createdAt).fromNow()}
-                                p #{comment.text}
+                                h4.username #{comment.author.username} 
+                                p.comment-text #{comment.text}
+                                p.comment-date #{moment(comment.createAt).fromNow()}
+                                hr
 include ../partials/footer

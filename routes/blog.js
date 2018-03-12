@@ -24,7 +24,7 @@ router.get("/blogs", function(req, res){
   } else {
       // Get all campgrounds from DB // Ez mar pagination 
       // itt ezt meg old meg hogy a legfrissebb keruljon elore mindig
-      Blog.find({}, function (err, allBlogs) {
+      Blog.find({}, {}, { sort : {'createAt' : -1}}, function (err, allBlogs) {
             if (err) {
                 console.log(err);
             } else {

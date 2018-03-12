@@ -8,8 +8,11 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
 var async = require('async');
+var middleware = require("../middleware");
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
+var request = require("request");
+var ObjectID = require("mongodb").ObjectID
 mongoose.connect('mongodb://devjohn:Iphone93@ds229448.mlab.com:29448/bloglist');
 
 /* GET home page. */
@@ -195,7 +198,7 @@ router.post('/reset/:token', function(req, res) {
 
 // Users profiles
 
-router.get("/users/:id", function(req, res){
+router.get("/users/:id", middleware.isLoggedin, function(req, res){
     User.findById(req.params.id, function(err, foundUser){
         if(err){
             req.flash("error", "Valami nem stimmel");
@@ -207,11 +210,148 @@ router.get("/users/:id", function(req, res){
             res.redirect("/blogs");
             }
             res.render("users/show", {user: foundUser, blog: posts});
+            console.log("========================");
+            console.log(foundUser);
         });
         
     });
 
 });
+
+// Users Edit his/her profile
+router.get("/users/:id/edit", function(req, res, next){
+ User.findById(req.params.id, function(err, foundUser){
+   if(err){
+    console.log(err);
+   } else {
+    console.log(req.user.id);
+    console.log(foundUser._id);
+    if(foundUser._id.equals(req.user.id)){
+      console.log("yeah its working");
+      res.render("users/edit", {user: foundUser});
+    } else {
+      res.redirect("back");
+    }
+   }
+ });
+});
+
+// Users update  his/her profile
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// contactpage get
+
+router.get("/contact", function(req, res){
+  res.render("kapcsolat");
+});
+
+router.post("/contact/send", function(req, res) {
+    const captcha = req.body["g-recaptcha-response"];
+    if (!captcha) {
+      console.log(req.body);
+      req.flash("error", "Please select captcha");
+      return res.redirect("back");
+    }
+    // secret key
+    var secretKey = process.env.CAPTCHA;
+    // Verify URL
+    var verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captcha}&remoteip=${req
+      .connection.remoteAddress}`;
+    // Make request to Verify URL
+    request.get(verifyURL, (err, response, body) => {
+      // if not successful
+      if (body.success !== undefined && !body.success) {
+        req.flash("error", "Captcha Failed");
+        return res.redirect("/contact");
+      }
+        var smtpTransport = nodemailer.createTransport({
+            service: 'Gmail', 
+            auth: {
+              user: 'janodevelop@gmail.com',
+              pass: process.env.GMAILPW
+            }
+        });
+         
+        var mailOptions = {
+            from: 'Your Name janodevelop@gmail.com',
+            to: 'your@gmail.com',
+            replyTo: req.body.email,
+            subject: "Let's Camp contact request from: " + req.body.name,
+            text: 'You have received an email from... Name: '+ req.body.name  + ' Email: ' + req.body.email + ' Message: ' + req.body.message,
+            html: '<h3>You have received an email from...</h3><ul><li>Name: ' + req.body.name + ' </li><li>Email: ' + req.body.email + ' </li></ul><p>Message: <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + req.body.message + ' </p>'
+        };
+        
+        smtpTransport.sendMail(mailOptions, function(err, info){
+          if(err) {
+            console.log(err)
+            req.flash("error", "Something went wrong... Please try again later!");
+            res.redirect("/contact");
+          } else {
+            req.flash("success", "Your email has been sent, we will respond within 24 hours.");
+            res.redirect("/blogs");
+            
+          }
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

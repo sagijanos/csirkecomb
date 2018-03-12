@@ -11,6 +11,9 @@ html
     link(rel='stylesheet', href='/stylesheets/header.css')
     link(rel='stylesheet', href='/stylesheets/blogs.css')
     link(rel='stylesheet', href='/stylesheets/blogs-new.css')
+    link(rel='stylesheet', href='/stylesheets/blog-show.css')
+    link(rel='stylesheet', href='/stylesheets/contact.css')
+    script(src='https://www.google.com/recaptcha/api.js')
      
   body
   nav.navbar.navbar-default
@@ -43,9 +46,11 @@ html
                   li
                     a(href="/blogs/new") bejegyzés hozzáadása 
                   li
-                    a Üdvözöllek: #{currentUser.username}
+                    a.welcome-user #{currentUser.username}
                   li
                     a(href="/users/" + currentUser._id ) profilom
                   li
                     a(href="/logout") Kilépés
+                  li
+                    a(href="/contact") Kapcsolat 
     block content

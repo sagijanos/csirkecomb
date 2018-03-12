@@ -1,0 +1,23 @@
+include ./partials/header
+div.container-fluid
+	h2.contact-title Kérlek Írj nekünk
+	div.container
+		div.row
+			div.col-md-12.message-form
+				form(action="/contact", method="POST")
+					div.form-group
+						label(for="name") Neved
+						input.form-control(type='text' name='name' placeholder='Kérlek írd le a neved')
+					div.form-group
+						label(for="email") Email
+						input.form-control(type='email' name='email' placeholder='Kérlek írd le az email-címed')
+					div.form-group
+						label(for="message") Üzeneted
+					div.form-group
+						textarea(name="message" rows="10" cols="45")
+					div.form-group
+						button.btn.btn-lg.btn-danger Küldés
+					div.form-group
+						div.g-recaptcha(data-sitekey="6LeVFUwUAAAAANUgchJYQoiq2gDNDOVSmu6D-l2h")
+
+include ./partials/footer

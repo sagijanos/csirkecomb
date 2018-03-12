@@ -9,7 +9,8 @@ div.container
                         h3.nomatch #{noMatch}
                 each item in blogs
                     div.container
-                        div.col-md-12.col-sm-12
+                        div.col-md-2
+                        div.col-md-6.col-sm-12
                             ul.personal-text
                                 li #{moment(item.createAt).fromNow()}
                                 li 
@@ -17,7 +18,8 @@ div.container
                                 li #{item.author.username}
                             div.caption
                                 h1.post-title #{item.name}
-                            h6.post-content #{item.description.substring(0, 100)}
+                            h6.post-content #{item.description.substring(0, 200)}
                             p
                                 a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
+                        div.col-md-4
 include ../partials/footer

@@ -1,5 +1,6 @@
 var Blog = require("../models/blog");// ide req-elned kell mert ha nem akkor undefinednak erzekeli az osszest modelt amit itt hasznalsz
 var Comment = require("../models/comment");
+var User = require("../models/user");
 // az osszes middleware jon ide 
 
 middlewareObj = {}
@@ -48,6 +49,27 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
             res.redirect("back");
         }
     }
+
+middlewareObj.checkUserOwnership = function(req, res, next){
+            User.findById(req.params.id, function(err, foundUser){
+                if(err){
+                    console.log(err);
+                    console.log("===================== heres is the foundUser");
+                    console.log(foundUser);
+                    res.redirect("back");
+                } else {
+                    // itt azert hasznalod ezt mert a found es a user az nem string az egyik object a masik string ezert hasznalod a az equals ami a mongoosenak egy cucca
+                    if(foundUser.person.id.equals(foundUser._id) || req.user.isAdmin){
+                        next();
+                    } else {
+                        req.flash("error", "Nincs hozzá jogosultságod!");
+                        res.redirect("back");
+                    }
+                    
+                }
+            });
+    }
+
 
 
 middlewareObj.isLoggedin = function(req, res, next){

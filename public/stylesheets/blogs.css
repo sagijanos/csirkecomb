@@ -9,19 +9,20 @@ body{
 	color: #fff;
 }
 #showmore{
-	background-color: transparent;
+	background-color: #000000;
 	color: #fff;
 	border-color: transparent;
 	margin-bottom: 200px;
+	border-radius: 0px;
 }
-.inner-container{
-	margin-left: 5%;
-}
+
 .post-content{
 	color: #848484;
 	margin-left: 1%;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	line-height: 25px;
+	letter-spacing: 0.5px;
 }
 .time{
 	color: #545454;

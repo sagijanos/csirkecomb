@@ -17,6 +17,9 @@
 	border-bottom: 0px solid #fff;
 	margin-top: -3px;
 }
+.navbar-default .navbar-nav>li>.welcome-user {
+    color: #16c72e ;
+}
 
 .fa {
     display: inline-block;

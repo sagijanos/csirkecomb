@@ -229,8 +229,17 @@ a:hover{
 
 
 
-
-
+/* forgot CSS***********************************************/
+.forgot{
+	width: 40%;
+	display: block;
+	margin: auto;
+}
+.forgot-title{
+	color: #fff;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
 
 
 

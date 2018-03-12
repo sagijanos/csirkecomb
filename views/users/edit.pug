@@ -1,0 +1,15 @@
+include ../partials/header
+div.form-div
+                form(action="/register" method="POST")
+                    div.form-group
+                        input.form-control(type="text" name="username" value= user.username)
+                    div.form-group
+                        input.form-control(type="text" name="firstname" value= user.firstname)
+                    div.form-group
+                        input.form-control(type="text" name="lastname" value= user.lastname)
+                    div.form-group
+                        input.form-control(type="text" name="avatar" value= user.avatar id="#user-image-set")
+                    div.form-group
+                        button.btn.btn-lg.btn-primary.sign-up-page-btn Frissitem a profilom
+
+include ../partials/footer
