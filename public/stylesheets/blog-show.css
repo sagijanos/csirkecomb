@@ -1,11 +1,29 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300');
 
+
+#like-button{
+	color: #000;
+	font-size: 25px;
+	margin-top: 9px;
+}
+
+#dislike-button{
+	color: #000;
+	font-size: 25px;
+	margin-top: 9px;
+	margin-left: 3%;
+}
 .blog-date{
 	color: #fff;
 	text-align: center;
 }
 .blog-desc{
-	line-height: 25px;
+	line-height: 23px;
+	color: #000;
+	text-align: left;
+}
+.content-desc{
+	background-color: #fff;
 }
 .desc-container{
     padding-right: 35px;
@@ -32,12 +50,13 @@
 	margin: 10px;
 }
 .container-comment{
- margin-top: 200px
+ background-color: #fff;
+ padding-top: 200px;
 }
 .comment-title{
-	color: #fff;
+	color: #000;
 	padding-bottom: 30px;
-	margin-left: 5%;
+	text-align: right;
 }
 .currenUser{
  padding: 2px;
@@ -59,8 +78,18 @@
 	padding-left: 1%;
 
 }
+.collapse.in {
+    display: block;
+    
+}
+
+.collapse {
+    display: none;
+
+}
+
 .add-comment{
-	background-color: transparent;
+	background-color: #000;
 	border-radius: 0px;
 }
 

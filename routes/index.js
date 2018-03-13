@@ -30,6 +30,7 @@ router.post("/register", function(req, res, next){
             username: req.body.username,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
+            bio: req.body.bio,
             email: req.body.email,
             avatar: req.body.avatar
         });
@@ -244,19 +245,6 @@ router.get("/users/:id/edit", function(req, res, next){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // contactpage get
 
 router.get("/contact", function(req, res){
@@ -312,46 +300,6 @@ router.post("/contact/send", function(req, res) {
         });
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

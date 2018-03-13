@@ -36,13 +36,14 @@ router.get("/blogs", function(req, res){
 
 router.post("/blogs", middleware.isLoggedin, function(req, res){
   var name = req.body.name;
+  var name = req.body.subname;
   var image = req.body.image;
   var description = req.body.description;
   var author = {
       id: req.user._id,
       username: req.user.username
   }
-  var newblog = {name: name, image: image, description: description, author:author}
+  var newblog = {name: name, subname: subname, image: image, description: description, author:author}
   Blog.create(newblog, function(err, newly){
     if(err){
       console.log(err);

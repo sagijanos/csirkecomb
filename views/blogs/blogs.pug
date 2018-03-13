@@ -18,7 +18,7 @@ div.container
                                 li #{item.author.username}
                             div.caption
                                 h1.post-title #{item.name}
-                            h6.post-content #{item.description.substring(0, 200)}
+                            h6.post-content !{item.description.substring(0, 200)}
                             p
                                 a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
                         div.col-md-4
