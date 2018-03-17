@@ -13,7 +13,7 @@ var nodemailer = require('nodemailer');
 var crypto = require('crypto');
 var request = require("request");
 var ObjectID = require("mongodb").ObjectID
-mongoose.connect('mongodb://devjohn:Iphone93@ds229448.mlab.com:29448/bloglist');
+mongoose.connect(process.env.DBHOST);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -34,7 +34,7 @@ router.post("/register", function(req, res, next){
             email: req.body.email,
             avatar: req.body.avatar
         });
-    if(req.body.adminCode === 'Qazwsx930323'){
+    if(req.body.adminCode === process.env.ADMINS){
         newUser.isAdmin = true;
     }
     User.register(newUser, req.body.password, function(err, user){
@@ -60,14 +60,15 @@ router.get("/login", function(req, res, next){
     res.render("login");
 	});
 // Megcsinalni a login logikat
-router.post("/login", passport.authenticate("local",
-		{
-    	successRedirect: "/blogs",
-    	failureRedirect: "/login"
-		}), function(req, res){
-
-	});
-
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/blogs",
+    failureRedirect: "/login",
+    failureFlash: true
+  }),
+  function(req, res) {}
+);
 // ==============
 // belepesii utak LOG OUT
 //===============
@@ -75,7 +76,7 @@ router.post("/login", passport.authenticate("local",
 router.get("/logout", function(req, res){
     req.logout();
     req.flash("success", "Várunk vissza!");// ennek par resze middlewareben is van csak mondom ott is keresd
-    res.redirect("/blogs");
+    res.redirect("/login");
 });
 
 // elfelejtett password
@@ -238,11 +239,21 @@ router.get("/users/:id/edit", function(req, res, next){
 });
 
 // Users update  his/her profile
-
-
-
-
-
+router.put("/users/:id", function(req, res){
+  //mi van a form-ba 
+  var data = {username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, avatar: req.body.avatar, bio: req.body.bio}
+  User.findByIdAndUpdate(req.params.id, data, function(err, updatedProfile){
+    if(err){
+      console.log(err);
+      console.log(updatedProfile);
+      req.flash("error", "Valami nem stimmel kérlek próbáld úrja");
+      res.redirect("back");
+    } else if(updatedProfile._id.equals(req.user.id)) {
+      res.redirect("/users/" + updatedProfile._id)
+      console.log(updatedProfile);
+    }
+  });
+});
 
 
 // contactpage get

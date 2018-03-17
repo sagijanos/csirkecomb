@@ -41,19 +41,46 @@ app.set('view engine', 'pug');
 // req moment.js for timing
 app.locals.moment = require('moment');
 
+// ez olyan mint a cookie session csak ez express ez felel azert hogy a user kapjon egy token ami egyedi ezert nem kell tobbet bejelentkeznie. cookie session emily-
 app.use(require("express-session")({
 	secret: "This is good",
 	resave: false,
 	saveUninitialized: false
 }));
-
+// ez kell meg a passporthoz de ez a vegen kell 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 app.use(methodOverride("_method"));
 app.use(flash()); // flash message login first stb
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
+// passport local with email login
+passport.use(new LocalStrategy( (username, password, done) => {
+  User.findOne({username: username}, (err, user) => {
+      if (err){return done(err);}
+
+      if(!user){
+        return done(null, false, {message: 'Érvénytelen felhasználó'});
+      }
+      if(user){
+        console.log(user);
+      }
+      return done(null, user);
+    });
+  }
+));
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done ) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
+
 
 // ezek az allandok amit hasznalsz.
 app.use(function(req, res, next){
@@ -62,14 +89,6 @@ app.use(function(req, res, next){
   res.locals.success = req.flash("success");
 	next();
 });
-
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(methodOverride("_method"));
-app.use(flash()); // flash message login first stb
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 // view engine setup
 

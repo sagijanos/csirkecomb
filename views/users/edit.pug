@@ -1,6 +1,6 @@
 include ../partials/header
 div.form-div
-                form(action="/register" method="POST")
+                form(action="/users/" + user._id + "?_method=PUT" method="POST")
                     div.form-group
                         input.form-control(type="text" name="username" value= user.username)
                     div.form-group
@@ -9,6 +9,8 @@ div.form-div
                         input.form-control(type="text" name="lastname" value= user.lastname)
                     div.form-group
                         input.form-control(type="text" name="avatar" value= user.avatar id="#user-image-set")
+                    div.form-group
+                        textarea(name="bio" rows="3" cols="45") #{user.bio}
                     div.form-group
                         button.btn.btn-lg.btn-primary.sign-up-page-btn Frissitem a profilom
 

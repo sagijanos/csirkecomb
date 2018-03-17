@@ -36,7 +36,7 @@ router.get("/blogs", function(req, res){
 
 router.post("/blogs", middleware.isLoggedin, function(req, res){
   var name = req.body.name;
-  var name = req.body.subname;
+  var subname = req.body.subname;
   var image = req.body.image;
   var description = req.body.description;
   var author = {

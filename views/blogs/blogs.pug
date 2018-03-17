@@ -1,6 +1,10 @@
 include ../partials/header 
 div.container
     header.jumbotron
+        img(src= "http://res.cloudinary.com/dghumjujo/image/upload/v1521103604/cs6.gif" width="300" heigth="300")
+        if success && success.length > 0
+                    div.alert.alert-success(role="alert") #{success}
+
     div.container  
         div.row
             div.container.inner-container
@@ -18,7 +22,7 @@ div.container
                                 li #{item.author.username}
                             div.caption
                                 h1.post-title #{item.name}
-                            h6.post-content !{item.description.substring(0, 200)}
+                            h6.post-content !{item.description.substring(0, 200)}...
                             p
                                 a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
                         div.col-md-4

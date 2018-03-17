@@ -1,14 +1,16 @@
 include ../partials/header 
 div.row
     div.col-md-3
-    div.col-md-6.profile-details 
+    div.col-md-2.profile-details 
         div.circle-person(id="user-avatar" class="user-avatar" style="background: url(" + user.avatar + ")")
         h4.user-name #{user.firstname + " " + user.lastname} <span><a href="#"> <i class="fa fa-pencil"></i></span></a> 
-    div.col-md-3 
-        p 
-div.row
+    div.col-md-3.profile-information
+        p.profile-text #{user.bio}
+div.row.simple-text
+    div.col-md-1
     div.col-md-4
-        h6.user-name #{user.username} bejegyzései
+        h5.posts #{user.username} bejegyzései
+        hr
 div.container  
         div.row
             div.container.inner-container

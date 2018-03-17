@@ -1,18 +1,24 @@
 include ../partials/header
 div.container
     div.row
-        h1.text-center Edit #{blogs.name}
-        div(style="width: 30%; margin: 25px auto;")
-            form(action="/blogs/" + blogs._id + "?_method=PUT"  method='POST')
+        h1.text-center.create Modósítsd a bejegyzést #{blogs.name}
+        div(style="width: 60%; margin: 25px auto;")
+            form(action="/blogs/" + blogs._id + "?_method=PUT" method='POST')
                 div.form-group
+                    label(for="name") Bejegyzés címe
                     input.form-control(type='text' name='name' value= blogs.name)
                 div.form-group
-                    input.form-control(type='text' name='image' value= blogs.image)
+                    label(for="subname") Bejegyzés alcíme
+                    input.form-control(type='text' name='subname' value= blogs.subname)
                 div.form-group
-                    input.form-control(type='text' name='description' value= blogs.description)
+                    label(for="image")  Fő kép
+                    input.form-control(type='text' pattern="^https:\/\/images\.unsplash\.com\/.*" title="Csak az unsplash.com-ról tudsz feltenni képet lásd alul a linken" name='image' id="image" value= blogs.image)
                 div.form-group
-                    button.btn.btn-lg.btn-danger.btn-block Submit!
-            a(href='/blogs') back
+                    textarea(name="description" rows="10" cols="95") #{blogs.description}
+                div.form-group
+                    button.btn.btn-lg.btn-danger Módosítom!
+                a.back(href='/blogs') vissza
+        
         
     
 include ../partials/footer

@@ -11,6 +11,9 @@ div.container-fluid
                         a(href="/register")
                             button.btn.btn-lg.btn-primary.sign-up Regisztrálok  
         div.col-md-5.right
+            div.container
+                if error && error.length > 0 
+                    div.alert.alert-danger(role="alert") #{error} 
             h3.login-title Vagy jelentkezz be itt
             div.form-div
                 form(action="/login" method="POST")
@@ -21,12 +24,9 @@ div.container-fluid
                     div.form-group
                         button.btn.btn-lg.btn-primary.sign-in Bejelentkezés
             a(href="/forgot") 
-                p.forgot Elfelejtetted a jelszódat?
-            div.container
-                if error && error.length > 0 
-                    div.alert.alert-danger(role="alert") #{error} 
+                p.forgotPassword Elfelejtetted a jelszódat?
+            
             div.container  
-                if success && success.length > 0
-                    div.alert.alert-success(role="alert") #{success}
+                x
 
 

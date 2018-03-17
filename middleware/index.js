@@ -9,7 +9,7 @@ middlewareObj.checkBlogOwnership = function(req, res, next){
 	if(req.isAuthenticated()){
 			Blog.findById(req.params.id, function(err, foundBlog){
 				if(err){
-					req.flash("error", "blog is not found");
+					req.flash("error", "Nincs ilyen bejegyzés");
 					res.redirect("back");
 				} else {
 					// itt azert hasznalod ezt mert a found es a user az nem string az egyik object a masik string ezert hasznalod a az equals ami a mongoosenak egy cucca
@@ -77,7 +77,7 @@ middlewareObj.isLoggedin = function(req, res, next){
         return next();
         // ez fontos ha returnolsz nem kell else
     }
-    req.flash("error", "Please Login first!");
+    req.flash("error", "Kérlek jelentkezz be elötte");
     res.redirect("/login");
 }
 
