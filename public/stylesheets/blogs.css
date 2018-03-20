@@ -1,6 +1,13 @@
 body{
 	background-color: #2A2F38;
 }
+
+.line{
+	margin-top: -10px;
+}
+.newsfeed{
+	color: #fff;
+}
 .nomatch{
 	color: #fff;
 }
@@ -15,6 +22,11 @@ body{
 	margin-bottom: 200px;
 	border-radius: 0px;
 }
+
+#showmore:hover{
+	color: #16c72e;
+}
+
 
 .post-content{
 	color: #848484;
@@ -51,8 +63,15 @@ li:nth-child(3n){
 .jumbotron{
 	background-color: #2A2F38;
 }
+.sub-blog-name{
+	color: #000;
+	margin-top: 5%;
 
-
+}
+.sub-blog-subname{
+	color: #000;
+	margin-top: 3%;
+}
 
 .blog-name{
 	text-align: center;

@@ -1,9 +1,11 @@
 include ../partials/header 
 div.container
     header.jumbotron
-        img(src= "http://res.cloudinary.com/dghumjujo/image/upload/v1521103604/cs6.gif" width="300" heigth="300")
         if success && success.length > 0
-                    div.alert.alert-success(role="alert") #{success}
+            div.alert.alert-success(role="alert") #{success}
+        img(src= "http://res.cloudinary.com/dghumjujo/image/upload/v1521103604/cs6.gif" width="300" heigth="300")
+        p.newsfeed Aktuális Hírfolyam
+        hr.line
 
     div.container  
         div.row
@@ -26,4 +28,5 @@ div.container
                             p
                                 a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
                         div.col-md-4
+
 include ../partials/footer

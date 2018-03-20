@@ -10,7 +10,15 @@ div.container-fluid
             img('src'=blog.image class="img-responsive header-img")
             div.row.content-desc
                 div.container.desc-container
-                    div.col-md-12
+                    div.col-md-2
+                        div.social-box
+                    div.col-md-8
+                        h1.sub-blog-name #{blog.name}
+                        h3.sub-blog-subname #{blog.subname}
+                         a(target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsalty-hollows-86978.herokuapp.com/" + blog._id + "%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore")
+                                i.fa.fa-facebook(id="facebook-shareLogo")
+                         a(href="#" onclick="window.open('http://twitter.com/share?url=https://salty-hollows-86978.herokuapp.com/', 'Twitter Share', 'width= 612, height=420'); return false")
+                                i.fa.fa-twitter(id="twitter-shareLogo")
                         p.blog-desc !{blog.description}
                         if currentUser
                             i.fa.fa-thumbs-o-up(id="like-button")
@@ -20,6 +28,7 @@ div.container-fluid
                                     form(action="/blogs/" + blog._id + "?_method=DELETE" method="POST" id="delete-form")
                                         button.btn.btn-danger.delete Törlés
                                     a.btn.btn-success.btn-md.edit(href="/blogs/" +blog._id + "/edit") Modósítás
+                    div.col-md-2
             div.container-comment
                 div.row
                     div.col-md-2

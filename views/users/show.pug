@@ -1,10 +1,17 @@
 include ../partials/header 
 div.row
-    div.col-md-3
-    div.col-md-2.profile-details 
+    div.col-md-3.profile-details
         div.circle-person(id="user-avatar" class="user-avatar" style="background: url(" + user.avatar + ")")
-        h4.user-name #{user.firstname + " " + user.lastname} <span><a href="#"> <i class="fa fa-pencil"></i></span></a> 
-    div.col-md-3.profile-information
+        h4.user-name #{user.firstname + " " + user.lastname} 
+            span
+                a(href="/users/" + user.id + "/edit") <i class="fa fa-pencil"></i></span></a> 
+    div.col-md-2.profile-details 
+    div.col-md-4.profile-information
+        p.bio Bio
+        hr.bio-hr
+        if user.bio.length === 0
+            a(href="/users/" + user.id + "/edit")
+                p.profile-text Kérlek adj hozzá valamit 
         p.profile-text #{user.bio}
 div.row.simple-text
     div.col-md-1

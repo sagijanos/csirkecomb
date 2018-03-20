@@ -1,7 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var Blog = require("../models/blog");
+var socialSharing = require('social-share');
 var middleware = require("../middleware");//var middleware = require("../middleware")//itt azert nincs tovabbi fajl mert ha index.js a neve akkor auto tudja az express hogy az az.
+
+
+
+//Test social- sharing
+
+
+
+
+
+
+router.get('/likeaction', function(req, res){
+  let data = 10;
+  res.send(data);
+});
 
 
 //INDEX - show all posts

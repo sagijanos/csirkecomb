@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+
 .navbar{
 	margin-bottom: 0;
 }
@@ -19,6 +22,8 @@
 }
 .navbar-default .navbar-nav>li>.welcome-user {
     color: #16c72e ;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
 }
 
 .fa {
@@ -42,3 +47,15 @@
     background-color: #e6e6e6;
     border-color: #adadad;
 }
+
+.chiken-logo-header{
+     -webkit-transition: -webkit-transform .5s ease-in-out;
+  transition: transform .5s ease-in-out;
+   -webkit-transform: rotate(90deg);
+   margin-top: -13px;
+}
+.chiken-logo-header:hover{
+    -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
