@@ -206,7 +206,7 @@ router.get("/users/:id", middleware.isLoggedin, function(req, res){
             req.flash("error", "Valami nem stimmel");
             res.redirect("/blogs");
         }
-        Blog.find().where('author.id').equals(foundUser._id).exec(function(err, posts){
+        Blog.find({}, {}, { sort : {'createAt' : -1}}).where('author.id').equals(foundUser._id).exec(function(err, posts){
             if(err){
             req.flash("error", "Valami nem stimmel");
             res.redirect("/blogs");

@@ -10,15 +10,6 @@ var middleware = require("../middleware");//var middleware = require("../middlew
 
 
 
-
-
-
-router.get('/likeaction', function(req, res){
-  let data = 10;
-  res.send(data);
-});
-
-
 //INDEX - show all posts
 router.get("/blogs", function(req, res){
 	var noMatch = null;
@@ -56,7 +47,8 @@ router.post("/blogs", middleware.isLoggedin, function(req, res){
   var description = req.body.description;
   var author = {
       id: req.user._id,
-      username: req.user.username
+      username: req.user.username,
+      avatar: req.user.avatar
   }
   var newblog = {name: name, subname: subname, image: image, description: description, author:author}
   Blog.create(newblog, function(err, newly){

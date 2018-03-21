@@ -2,6 +2,12 @@ body{
 	background-color: #2A2F38;
 }
 
+.author-img{
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background-size: cover !important;
+}
 .line{
 	margin-top: -10px;
 }
@@ -15,11 +21,22 @@ body{
 	text-align: left;
 	color: #fff;
 }
+.show-more-aut{
+	margin-left: -35px;
+	margin-bottom: 100px;
+}
+.show-more-aut li{
+	display: inline-block;
+}
+.show-more-aut li:nth-child(2n){
+	padding-left: 25px;
+}
+
 #showmore{
 	background-color: #000000;
 	color: #fff;
 	border-color: transparent;
-	margin-bottom: 200px;
+	margin-bottom: 0px;
 	border-radius: 0px;
 }
 

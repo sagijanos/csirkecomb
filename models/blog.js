@@ -11,7 +11,9 @@ var blogSchema = new mongoose.Schema({
 			type: mongoose.Schema.Types.ObjectId,
 			ref:"User"
 		},
-		username: String
+		username: String,
+		avatar: String 
+
 	},
 //fontoss hogy itt adod hozza az egyutmukodes 
 // minden campgroundhoz tartozik tobb comment 

@@ -6,7 +6,6 @@ div.container
         img(src= "http://res.cloudinary.com/dghumjujo/image/upload/v1521103604/cs6.gif" width="300" heigth="300")
         p.newsfeed Aktuális Hírfolyam
         hr.line
-
     div.container  
         div.row
             div.container.inner-container
@@ -26,7 +25,11 @@ div.container
                                 h1.post-title #{item.name}
                             h6.post-content !{item.description.substring(0, 200)}...
                             p
-                                a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
+                                ul.show-more-aut
+                                    li
+                                        a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
+                                    li.aut-img
+                                        div.author-img( style="background: url(" + item.author.avatar + ")")
                         div.col-md-4
 
 include ../partials/footer

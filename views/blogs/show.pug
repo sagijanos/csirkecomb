@@ -21,8 +21,6 @@ div.container-fluid
                                 i.fa.fa-twitter(id="twitter-shareLogo")
                         p.blog-desc !{blog.description}
                         if currentUser
-                            i.fa.fa-thumbs-o-up(id="like-button")
-                            i.fa.fa-thumbs-o-down(id="dislike-button")
                             a(href="/users/" + blog.author.id)
                                 if currentUser && blog.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin
                                     form(action="/blogs/" + blog._id + "?_method=DELETE" method="POST" id="delete-form")
