@@ -1,5 +1,4 @@
-require('dotenv').config()
-
+require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -16,7 +15,7 @@ var mongoose = require('mongoose');
 var methodOverride = require("method-override");
 var flash = require('connect-flash');
 var moment = require('moment');
-var ObjectID = require("mongodb").ObjectID
+var ObjectID = require("mongodb").ObjectID;
 
 // configure dotenv
 require('dotenv').load();
@@ -43,9 +42,9 @@ app.locals.moment = require('moment');
 
 // ez olyan mint a cookie session csak ez express ez felel azert hogy a user kapjon egy token ami egyedi ezert nem kell tobbet bejelentkeznie. cookie session emily-
 app.use(require("express-session")({
-	secret: "This is good",
-	resave: false,
-	saveUninitialized: false
+    secret: "This is good",
+    resave: false,
+    saveUninitialized: false
 }));
 // ez kell meg a passporthoz de ez a vegen kell 
 app.use(passport.initialize());
@@ -56,38 +55,37 @@ app.use(methodOverride("_method"));
 app.use(flash()); // flash message login first stb
 
 // passport local with email login
-passport.use(new LocalStrategy( (username, password, done) => {
-  User.findOne({username: username}, (err, user) => {
-      if (err){return done(err);}
+passport.use(new LocalStrategy((username, password, done) => {
+    User.findOne({ username: username }, (err, user) => {
+        if (err) { return done(err); }
 
-      if(!user){
-        return done(null, false, {message: 'Érvénytelen felhasználó'});
-      }
-      if(user){
-        console.log(user);
-      }
-      return done(null, user);
+        if (!user) {
+            return done(null, false, { message: 'Érvénytelen felhasználó' });
+        }
+        if (user) {
+            console.log(user);
+        }
+        return done(null, user);
     });
-  }
-));
+}));
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+    done(null, user.id);
 });
 
-passport.deserializeUser((id, done ) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
-  });
+passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+        done(err, user);
+    });
 });
 
 
 // ezek az allandok amit hasznalsz.
-app.use(function(req, res, next){
-	res.locals.currentUser = req.user;
-  res.locals.error = req.flash("error");
-  res.locals.success = req.flash("success");
-	next();
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
+    next();
 });
 
 // view engine setup
@@ -102,20 +100,20 @@ app.use(comments);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;
