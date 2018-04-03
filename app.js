@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
+var GoogleStrategy = require('passport-google-oauth20');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var User = require("./models/user");
@@ -53,6 +54,22 @@ app.use(passport.session());
 
 app.use(methodOverride("_method"));
 app.use(flash()); // flash message login first stb
+
+// passport Google oauth
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLECLIENTID,
+    clientSecret: process.env.GOOGLECLIENTSECRET,
+    callbackURL: "/auth/google/callback",
+    proxy: true
+}, function(accessToken, refreshToken, profile, done) {
+    console.log(accessToken);
+    console.log(profile);
+}))
+
+
+
+
+
 
 // passport local with email login
 passport.use(new LocalStrategy((username, password, done) => {

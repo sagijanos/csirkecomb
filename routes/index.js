@@ -7,6 +7,7 @@ var User = require("../models/user"); // hozd letre a schemat
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
+var googleStrategy = require('passport-google-oauth20');
 var async = require('async');
 var middleware = require("../middleware");
 var nodemailer = require('nodemailer');
@@ -82,6 +83,29 @@ router.post("/register", function(req, res, next) {
 router.get("/login", function(req, res, next) {
     res.render("login");
 });
+
+
+
+
+
+// Google bejenlentkezes
+router.get('/auth/google', passport.authenticate('google', {
+    scope: ['profile', 'email']
+}));
+
+router.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/blogs');
+    });
+
+
+
+
+
+
+
 // Megcsinalni a login logikat
 router.post(
     "/login",
