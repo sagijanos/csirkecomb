@@ -15,22 +15,25 @@ div.container-fluid
                 form(action="/register" method="POST")
                     div.form-group
                         label(for="username") felhasználónév
-                        input.form-control(type="text" name="username" placeholder="felhasználónév*" pattern=".{3,15}" required title="Muszáj hogy 3 és 5 karakter között legyen.")
+                        input.form-control(type="text" name="username" value= username placeholder="felhasználónév*" pattern=".{3,15}" required title="Muszáj hogy 3 és 5 karakter között legyen.")
                     div.form-group
                         label(for="firstname") Keresztnév
-                        input.form-control(type="text" name="firstname" placeholder="Keresztnév*" pattern=".{3,15}" required title="Muszáj hogy 3 és 5 karakter között legyen." )
+                        input.form-control(type="text" name="firstname" value= firstname placeholder="Keresztnév*" pattern=".{3,15}" required title="Muszáj hogy 3 és 5 karakter között legyen." )
                     div.form-group
                         label(for="lastname") Vezetéknév
-                        input.form-control(type="text" name="lastname" placeholder="Vezetéknév*" pattern=".{3,15}" required title="Muszáj hogy 3 és 5 karakter között legyen.")
+                        input.form-control(type="text" name="lastname" value= lastname placeholder="Vezetéknév*" pattern=".{3,15}" required title="Muszáj hogy 3 és 5 karakter között legyen.")
                     div.form-group
                         label(for="email") Email
-                        input.form-control(type="email" name="email" placeholder="email-cím*" required)
+                        input.form-control(type="email" name="email" value= email placeholder="email-cím*" required)
                     div.form-group
                         label(for="avatar") Profilkép
-                        input.form-control(type="text" name="avatar" placeholder="profilkep url" id="#user-image-set")
+                        input.form-control(type="text" name="avatar" value= avatar placeholder="profilkep url" id="#user-image-set")
                     div.from-group.password
                         label(for="password") Jelszó
                         input.form-control(type="password" name="password" placeholder="jelszó" pattern=".{8,20}" title="A jelszónak muszáj 5 és 20 karakter között kell lennie.")
+                    div.from-group.password
+                        label(for="password2") Jelszó Mégegyszer
+                        input.form-control(type="password" name="password2" placeholder="jelszó mégegyszer" pattern=".{8,20}" title="A jelszónak muszáj 5 és 20 karakter között kell lennie.")
                     div.form-group
                         label(for="bio") Bio
                     div.form-group

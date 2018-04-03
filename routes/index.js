@@ -11,6 +11,7 @@ var async = require('async');
 var middleware = require("../middleware");
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
+var bcrypt = require('bcryptjs');
 var request = require("request");
 var ObjectID = require("mongodb");
 mongoose.connect(process.env.DBHOST);
@@ -26,28 +27,50 @@ router.get("/register", function(req, res, next) {
 
 // Show sign up form register form letrehozasa post 
 router.post("/register", function(req, res, next) {
-    var newUser = new User({
-        username: req.body.username,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        bio: req.body.bio,
-        email: req.body.email,
-        avatar: req.body.avatar
-    });
-    if (req.body.adminCode === process.env.ADMINS) {
-        newUser.isAdmin = true;
+    var errors = [];
+
+    if (req.body.password !== req.body.password2) {
+        errors.push({ text: 'A jelszo nem egyezik meg' });
     }
-    User.register(newUser, req.body.password, function(err, user) {
-        if (err) {
-            console.log(err);
-            return res.render("register", { error: err.message });
-        }
-        passport.authenticate("local")(req, res, function() {
-            req.flash("success", "Szia " + " " + user.username);
-            res.redirect("/blogs");
+    if (errors.length > 0) {
+        res.render("register", {
+            username: req.body.username,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            bio: req.body.bio,
+            email: req.body.email,
+            avatar: req.body.avatar
         });
-    });
+    } else {
+        var newUser = new User({
+            username: req.body.username,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            bio: req.body.bio,
+            email: req.body.email,
+            avatar: req.body.avatar,
+            password: req.body.password
+        });
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(newUser.password, salt, function(err, hash) {
+                if (err) throw err;
+                newUser.password = hash;
+                newUser.save()
+                    .then(user => {
+                        req.flash('success', 'Sikeres regisztráció most már bejelentkezhetsz');
+                        res.redirect('/login');
+
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        return;
+                    });
+            });
+        });
+    }
 });
+
+
 
 
 // ==============
