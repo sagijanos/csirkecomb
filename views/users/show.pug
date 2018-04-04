@@ -9,7 +9,7 @@ div.row
     div.col-md-4.profile-information
         p.bio Bio
         hr.bio-hr
-        if user.bio.length === 0
+        if user.bio.length < 1
             a(href="/users/" + user.id + "/edit")
                 p.profile-text Kérlek adj hozzá valamit 
         p.profile-text !{user.bio}

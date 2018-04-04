@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
-var GoogleStrategy = require('passport-google-oauth20');
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var User = require("./models/user");
@@ -62,14 +62,37 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/callback",
     proxy: true
 }, function(accessToken, refreshToken, profile, done) {
-    console.log(accessToken);
-    console.log(profile);
-}))
+    //console.log(accessToken);
+    var avatar = profile.photos[0].value.substring(0, profile.photos[0].value.indexOf('?'));
+    var newUser = {
+        googleID: profile.id,
+        username: profile.displayName,
+        firstname: profile.name.givenName,
+        lastname: profile.name.familyName,
+        email: profile.emails[0].value,
+        bio: '',
+        avatar: avatar
+    };
+    User.findOne({ googleID: profile.id }).then(user => {
+        if (user) {
+            done(null, user);
+        } else {
+            new User(newUser).save().then(user => done(null, user));
+            console.log(newUser);
+        }
+    });
 
+}));
 
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
 
-
-
+passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+        done(err, user);
+    });
+});
 
 // passport local with email login
 passport.use(new LocalStrategy((username, password, done) => {
@@ -86,15 +109,7 @@ passport.use(new LocalStrategy((username, password, done) => {
     });
 }));
 
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
 
-passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
-        done(err, user);
-    });
-});
 
 
 // ezek az allandok amit hasznalsz.
