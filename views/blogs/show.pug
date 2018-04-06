@@ -29,7 +29,7 @@ div.container-fluid
                     div.col-md-2
             div.container-comment
                 div.row
-                    div.col-md-2
+                    div.col-md-4
                         div.add-comment-btn
                           h4.comment-title Hozzászólások
                     div.col-md-2
@@ -39,7 +39,7 @@ div.container-fluid
                 <!--Collapse Add a comment form START-->
                 div.collapse(id="collapseComment")
                     div.row
-                        div.col-md-1
+                        div.col-md-3
                         div.col-md-5
                             div.well
                                 if !currentUser
@@ -65,7 +65,8 @@ div.container-fluid
                 each comment in blog.comments
                     div.row
                         div.container.container-content
-                            div.col-md-12
+                            div.col-md-4
+                            div.col-md-4
                                 h4.username #{comment.author.username} 
                                 p.comment-text #{comment.text}
                                 p.comment-date #{moment(comment.createAt).fromNow()}

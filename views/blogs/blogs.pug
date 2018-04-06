@@ -4,32 +4,30 @@ div.container
         if success && success.length > 0
             div.alert.alert-success(role="alert") #{success}
         img(src= "http://res.cloudinary.com/dghumjujo/image/upload/v1521103604/cs6.gif" width="300" heigth="300")
-        p.newsfeed Aktuális Hírfolyam
-        hr.line
+        p.newsfeed.text-center Aktuális Hírfolyam
     div.container  
-        div.row
-            div.container.inner-container
-                div.col-md-12
-                    if noMatch !== null
-                        h3.nomatch #{noMatch}
-                each item in blogs
+       if noMatch !== null
+             h3.nomatch #{noMatch}
                     div.container
-                        div.col-md-2
-                        div.col-md-6.col-sm-12
-                            ul.personal-text
-                                li #{moment(item.createAt).fromNow()}
-                                li 
-                                    i.fa.fa-user
-                                li #{item.author.username}
-                            div.caption
-                                h1.post-title #{item.name}
-                            h6.post-content !{item.description.substring(0, 200)}...
-                            p
-                                ul.show-more-aut
-                                    li
-                                        a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
-                                    li.aut-img
-                                        div.author-img( style="background: url(" + item.author.avatar + ")")
-                        div.col-md-4
+                        div.row
+                            div.container.mega-box
+                                each item in blogs
+                                    div.col-md-6.col-sm-12
+                                        div.card.test-box
+                                            ul.personal-text
+                                                li #{moment(item.createAt).fromNow()}
+                                                li 
+                                                    i.fa.fa-user
+                                                li #{item.author.username}
+                                            div.caption
+                                                h2.post-title #{item.name}
+                                            h6.post-content !{item.description.substring(0, 200)}...
+                                            p
+                                                ul.show-more-aut
+                                                    li
+                                                        a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
+                                                    li.aut-img
+                                                        div.author-img( style="background: url(" + item.author.avatar + ")")
+                            
 
 include ../partials/footer

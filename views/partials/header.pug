@@ -18,12 +18,9 @@ html
     link(rel='stylesheet', href='/stylesheets/blogs-new.css')
     link(rel='stylesheet', href='/stylesheets/blog-show.css')
     link(rel='stylesheet', href='/stylesheets/contact.css')
-    script(src='https://www.google.com/recaptcha/api.js')
-     
+    script(src='https://www.google.com/recaptcha/api.js')     
   body
-    div(id="fb-root")
-    script
-      include ../partials/share.js
+    div(id="fb-root")  
   nav.navbar.navbar-default
     div.container
         div.navbar-header
@@ -60,5 +57,4 @@ html
                     a(href="/contact") Kapcsolat 
                   li
                     a(href="/logout") Kijelentkezés
-                  
     block content
