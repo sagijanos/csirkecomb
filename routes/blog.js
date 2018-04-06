@@ -13,9 +13,8 @@ var middleware = require("../middleware"); //var middleware = require("../middle
 //INDEX - show all posts
 router.get("/blogs", function(req, res) {
     var noMatch = null;
-    var time = req.body.createAt
     if (req.query.search) {
-        const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+        var regex = new RegExp(escapeRegex(req.query.search), 'gi');
         // Get all posts from DB
         Blog.find({ name: regex }, function(err, allBlogs) {
             if (err) {

@@ -8,26 +8,26 @@ div.container
     div.container  
        if noMatch !== null
              h3.nomatch #{noMatch}
-                    div.container
-                        div.row
-                            div.container.mega-box
-                                each item in blogs
-                                    div.col-md-6.col-sm-12
-                                        div.card.test-box
-                                            ul.personal-text
-                                                li #{moment(item.createAt).fromNow()}
-                                                li 
-                                                    i.fa.fa-user
-                                                li #{item.author.username}
-                                            div.caption
-                                                h2.post-title #{item.name}
-                                            h6.post-content !{item.description.substring(0, 200)}...
-                                            p
-                                                ul.show-more-aut
-                                                    li
-                                                        a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
-                                                    li.aut-img
-                                                        div.author-img( style="background: url(" + item.author.avatar + ")")
+       div.container
+            div.row
+                div.container.mega-box
+                    each item in blogs
+                        div.col-md-6.col-sm-12
+                            div.card.test-box
+                                ul.personal-text
+                                    li #{moment(item.createAt).fromNow()}
+                                    li 
+                                        i.fa.fa-user
+                                    li #{item.author.username}
+                                div.caption
+                                    h2.post-title #{item.name}
+                                h6.post-content !{item.description.substring(0, 200)}...
+                                p
+                                    ul.show-more-aut
+                                        li
+                                            a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
+                                        li.aut-img
+                                            div.author-img( style="background: url(" + item.author.avatar + ")")
                             
 
 include ../partials/footer
