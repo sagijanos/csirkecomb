@@ -247,7 +247,7 @@ router.post('/reset/:token', function(req, res) {
 
 // Users profiles
 
-router.get("/users/:id", middleware.isLoggedin, function(req, res) {
+router.get("/users/:id", middleware.isLoggedin, middleware.checkUserOwnership, function(req, res) {
     User.findById(req.params.id, function(err, foundUser) {
         if (err) {
             req.flash("error", "Valami nem stimmel");
@@ -265,6 +265,24 @@ router.get("/users/:id", middleware.isLoggedin, function(req, res) {
 
     });
 
+});
+
+// USer Public page so if you clicked the user you will see him/her public testamonies
+router.get('/users/public/:id', middleware.isLoggedin, function(req, res) {
+
+    User.findById(req.params.id, function(err, foundUser) {
+        if (err) {
+            req.flash("error", "Valami nem stimmel");
+            res.redirect("/blogs");
+        }
+        Blog.find({ status: 'public' }).sort({ createAt: 'desc' }).where('author.id').equals(foundUser._id).exec(function(err, posts) {
+            if (err) {
+                req.flash("error", "Valami nem stimmel");
+                res.redirect("/blogs");
+            }
+            res.render("users/show", { user: foundUser, blog: posts });
+        });
+    });
 });
 
 // Users Edit his/her profile

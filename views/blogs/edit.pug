@@ -10,6 +10,11 @@ div.container
                 div.form-group
                     label(for="subname") Bejegyzés alcíme
                     input.form-control(type='text' name='subname' value= blogs.subname)
+                div.form-group 
+                    label(for="status") Állapot
+                    select.select.form-control(class="form-control" name="status")
+                        option(value="public") Nyilvános
+                        option(value="private") Privát
                 div.form-group
                     label(for="image")  Fő kép
                     input.form-control(type='text' pattern="^https:\/\/images\.unsplash\.com\/.*" title="Csak az unsplash.com-ról tudsz feltenni képet lásd alul a linken" name='image' id="image" value= blogs.image)

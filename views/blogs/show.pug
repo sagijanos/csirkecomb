@@ -60,8 +60,9 @@ div.container-fluid
                 if blog.comments.length === 0
                     div.row
                         div.container.container-content
+                            div.col-md-2
                             div.col-md-2 
-                                em(style="color: grey;") Még nincs hozzászólás.
+                                em(style="color: grey; padding-bottom: 50px;") Még nincs hozzászólás.
                 each comment in blog.comments
                     div.row
                         div.container.container-content

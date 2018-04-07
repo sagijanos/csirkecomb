@@ -5,6 +5,10 @@ var blogSchema = new mongoose.Schema({
     image: String,
     description: String,
     subname: String,
+    status: {
+        type: String,
+        default: 'public'
+    },
     createAt: { type: Date, default: Date.now },
     author: {
         id: {

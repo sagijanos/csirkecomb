@@ -29,7 +29,7 @@ router.get("/blogs", function(req, res) {
     } else {
         // Get all campgrounds from DB // Ez mar pagination 
         // itt ezt meg old meg hogy a legfrissebb keruljon elore mindig
-        Blog.find({}, {}, { sort: { 'createAt': -1 } }, function(err, allBlogs) {
+        Blog.find({ status: 'public' }).sort({ createAt: 'desc' }).exec(function(err, allBlogs) {
             if (err) {
                 console.log(err);
             } else {
@@ -44,12 +44,13 @@ router.post("/blogs", middleware.isLoggedin, function(req, res) {
     var subname = req.body.subname;
     var image = req.body.image;
     var description = req.body.description;
+    var status = req.body.status;
     var author = {
         id: req.user._id,
         username: req.user.username,
         avatar: req.user.avatar
     }
-    var newblog = { name: name, subname: subname, image: image, description: description, author: author }
+    var newblog = { name: name, subname: subname, image: image, status: status, description: description, author: author }
     Blog.create(newblog, function(err, newly) {
         if (err) {
             console.log(err);
