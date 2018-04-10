@@ -20,7 +20,7 @@ div.container
                         a( href="/blogs/"+ item._id  class="btn-floating halfway-fab waves-effect waves-light red") 
                             <i class="fa fa-book"></i>
                     div.card-content
-                        h6.post-content #{item.description.substring(0, 100)}...
+                        h6.post-content !{item.description.substring(0, 100)}...
                         div.author-img( style="background: url(" + item.author.avatar + ")")
                         h5 #{item.author.username}
                         h6 #{moment(item.createAt).fromNow()}

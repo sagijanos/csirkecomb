@@ -13,7 +13,7 @@ div.row.content-desc.card
          h1.sub-blog-name #{blog.name}
          h3.sub-blog-subname #{blog.subname}
          p.blog-desc !{blog.description}
-         if currentUser && blog.author.id.equals(currentUser._id) || currentUser.isAdmin
+         if currentUser && blog.author.id.equals(currentUser._id)
             form(action="/blogs/" + blog._id + "?_method=DELETE" method="POST" id="delete-form")
                 button.btn.btn-danger.delete Törlés
                 a.btn.btn-success.btn-md.edit(href="/blogs/" +blog._id + "/edit") Modósítás
