@@ -1,27 +1,27 @@
 include ../partials/header
-div.container
+div.container.card.new-card
     div.row
-        h1.text-center.create Készíts egy új bejegyzést
+        h4.center-align.create Írj egy új bizonyságot
         div(style="width: 60%; margin: 25px auto;")
             form(action='/blogs' method='POST')
-                div.form-group
-                    label(for="name") Bejegyzés címe
+                div.input-field
                     input.form-control(type='text' name='name' placeholder='')
-                div.form-group
-                    label(for="subname") Bejegyzés alcíme
+                    label(for="name") Bejegyzés címe
+                div.input-field
                     input.form-control(type='text' name='subname' placeholder='')
-                div.form-group 
-                    label(for="status") Állapot
-                    select(class="form-control" name="status")
-                        option(value="public" selected) Nyilvános
-                        option(value="private") Privát
-                div.form-group
-                    label(for="image")  Fő kép
+                    label(for="subname") Bejegyzés alcíme
+                div(class="input-field")
+                    select(name="status" required)
+                        option(value="" disabled selected) Állapot
+                        option(value="nyilvános") Nyilványos
+                        option(value="privát") Privát
+                div.input-field
                     input.form-control(type='text' pattern="^https:\/\/images\.unsplash\.com\/.*" title="Csak az unsplash.com-ról tudsz feltenni képet lásd alul a linken" name='image' id="image" placeholder="https://images.unsplash.com/...")
+                    label(for="image")  Fő kép
                     <small>Kattints <a href="https://www.youtube.com/watch?v=ti__fa9ET6Q&feature=youtu.be" target="_blank">ide</a> hogy megnézd hogy kell az url linket bemásolni</small>
-                div.form-group
+                div.input-field
                     textarea(name="description" rows="10" cols="95")
-                div.form-group
-                    button.btn.btn-lg.btn-danger Létrehozom!
+                div.input-field
+                    button.waves-effect.waves-light.btn Létrehozom!
                 a.back(href='/blogs') vissza
 include ../partials/footer

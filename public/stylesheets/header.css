@@ -1,27 +1,84 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
-
-
-.navbar{
-	margin-bottom: 0;
-}
-.navbar-default{
-	background-color: #2A2F38;
-	color: #2A2F38;
-}
-.navbar {
-    position: relative;
-    min-height: 50px;
-    margin-bottom: 0px;
-    border: 0;
-    border-radius: 0px;
+#slide-out li {
+    list-style-type: none;
+    color: #000;
+    text-align: center;
+    margin-top: 10px;
 }
 
-#search{
-	border-bottom: 0px solid #fff;
-	margin-top: -3px;
+@media only screen and (min-width: 993px) {
+    .show-on-large {
+        display: inline !important;
+    }
 }
+
+#search {
+    border-bottom: 0px solid #fff;
+    margin-top: -3px;
+}
+
+.sidenav {
+    position: fixed;
+    width: 300px;
+    left: 0;
+    top: 0;
+    margin: 0;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    height: 100%;
+    height: calc(100% + 60px);
+    height: -moz-calc(100%);
+    padding-bottom: 60px;
+    background-color: #eeeeee;
+    z-index: 999;
+    overflow-y: auto;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateX(-105%);
+    transform: translateX(-105%);
+}
+
+.sidenav .user-view .circle {
+    margin: auto;
+}
+
+.google-btn {
+    background-color: #b71c1c;
+}
+
+.chiken-logo {
+    margin-top: 15px;
+}
+
+.chiken-logo-nav {
+    margin-top: 6px;
+}
+
+.sidenav li>a.btn:hover {
+    background-color: #b71c1c;
+}
+
+.sidenav li>a.email-btn:hover {
+    background-color: #004d40;
+}
+
+.sidenav li>a>i {
+    color: #f7f7f7;
+    text-align: center;
+}
+
+.sidenav li>p {
+    color: #000;
+    margin-top: -20px;
+}
+
+.email-btn {
+    background-color: #18A777;
+}
+
 .navbar-default .navbar-nav>li>.welcome-user {
-    color: #16c72e ;
+    color: #16c72e;
     font-family: 'Press Start 2P', cursive;
     font-size: 12px;
 }
@@ -32,30 +89,31 @@
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
-    color: #fff;
     -moz-osx-font-smoothing: grayscale;
 }
 
 .navbar-default .navbar-nav>li>a {
     color: #fff;
 }
-.navbar-default .navbar-nav>li>a:hover{
-	color: #d1fad7;
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #d1fad7;
 }
+
 .btn-default:hover {
     color: #d1fad7;
     background-color: #e6e6e6;
     border-color: #adadad;
 }
 
-.chiken-logo-header{
-     -webkit-transition: -webkit-transform .5s ease-in-out;
-  transition: transform .5s ease-in-out;
-   -webkit-transform: rotate(90deg);
-   margin-top: -13px;
-}
-.chiken-logo-header:hover{
-    -webkit-transform: rotate(360deg);
-  transform: rotate(360deg);
+.chiken-logo-header {
+    -webkit-transition: -webkit-transform .5s ease-in-out;
+    transition: transform .5s ease-in-out;
+    -webkit-transform: rotate(90deg);
+    margin-top: -13px;
 }
 
+.chiken-logo-header:hover {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}

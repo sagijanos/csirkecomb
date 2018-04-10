@@ -1,0 +1,35 @@
+include ../partials/header
+div.container
+h3.center-align.dashboardname #{currentUser.username}
+if (blog.length > 0)
+    h6.center-align Bizonyságaid
+    div.container.dashboard-wrap
+        table(class="striped card")
+            thead
+                tr
+                    th Bejegyzés
+                    th Készült
+                    th Állapot
+                    th
+            tbody
+                each item in blog
+                    tr
+                        td 
+                            a(href="/blogs/" + item._id) #{item.name}
+                        td #{moment(item.createAt).format('LL')}
+                        td 
+                            span(class="dash-status") #{item.status}
+                        td
+                            a(class="btn left-align" href="/blogs/" + item._id + "/edit")
+                                <i class="fa fa-pencil"></i> Edit
+                            form(action="/blogs/" + item._id + "?_method=DELETE" method="POST" id="delete-form")
+                                button(type="submit" class="btn red delete-btn")
+                                    <i class="fa fa-remove"></i> Delete
+else
+  p.center-align Még nincsenek bizonyságaid
+  p.center-align Kattintsd a gombra és hozd létre az elsőt
+  a(class="btn center-align create-button" href="/blogs/new")
+    <i class="fa fa-smile-o"></i> Írd meg
+include ../partials/footer
+
+

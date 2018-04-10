@@ -36,8 +36,6 @@ router.post("/register", function(req, res, next) {
     if (errors.length > 0) {
         res.render("register", {
             username: req.body.username,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
             bio: req.body.bio,
             email: req.body.email,
             avatar: req.body.avatar
@@ -45,8 +43,6 @@ router.post("/register", function(req, res, next) {
     } else {
         var newUser = new User({
             username: req.body.username,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
             bio: req.body.bio,
             email: req.body.email,
             avatar: req.body.avatar,
@@ -124,6 +120,11 @@ router.get("/logout", function(req, res) {
     req.logout();
     req.flash("success", "Várunk vissza!"); // ennek par resze middlewareben is van csak mondom ott is keresd
     res.redirect("/login");
+});
+
+router.get("/auth/google/logout", function(req, res) {
+    req.logout();
+    res.redirect("/blogs");
 });
 
 // elfelejtett password
@@ -267,6 +268,24 @@ router.get("/users/:id", middleware.isLoggedin, middleware.checkUserOwnership, f
 
 });
 
+// User see his/her all posts in a table and he/she can edit or remove from the list
+
+router.get('/users/dashboard/:id', middleware.isLoggedin, middleware.checkUserOwnership, function(req, res) {
+    User.findById(req.params.id, function(err, foundUser) {
+        if (err) {
+            req.flash("error", "Valami nem stimmel");
+            res.redirect("/");
+        }
+        Blog.find({}, {}, { sort: { 'createAt': -1 } }).where('author.id').equals(foundUser._id).exec(function(err, posts) {
+            if (err) {
+                req.flash("error", "Valami nem stimmel");
+                res.redirect("/blogs");
+            }
+            res.render('users/dashboard', { user: foundUser, blog: posts });
+        });
+    });
+});
+
 // USer Public page so if you clicked the user you will see him/her public testamonies
 router.get('/users/public/:id', middleware.isLoggedin, function(req, res) {
 
@@ -275,7 +294,7 @@ router.get('/users/public/:id', middleware.isLoggedin, function(req, res) {
             req.flash("error", "Valami nem stimmel");
             res.redirect("/blogs");
         }
-        Blog.find({ status: 'public' }).sort({ createAt: 'desc' }).where('author.id').equals(foundUser._id).exec(function(err, posts) {
+        Blog.find({ status: 'nyilvános' }).sort({ createAt: 'desc' }).where('author.id').equals(foundUser._id).exec(function(err, posts) {
             if (err) {
                 req.flash("error", "Valami nem stimmel");
                 res.redirect("/blogs");

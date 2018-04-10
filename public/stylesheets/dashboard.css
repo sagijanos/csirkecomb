@@ -1,0 +1,51 @@
+.table {
+    width: 50%;
+    margin-bottom: 20px;
+    background-color: transparent;
+    display: block;
+    margin: auto;
+}
+
+.dashboardname {
+    color: #242424;
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.dashboard-wrap {
+    margin-bottom: 150px;
+}
+
+th {
+    padding: 15px 20px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+
+.btn,
+.btn-large,
+.btn-small,
+.btn-flat {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    text-transform: capitalize;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.create-button {
+    display: block;
+    margin: auto;
+    width: 10%;
+}
+
+.delete-btn {
+    margin-left: 5px;
+}

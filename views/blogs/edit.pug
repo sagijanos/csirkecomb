@@ -1,29 +1,28 @@
 include ../partials/header
-div.container
+div.container.card.new-card
     div.row
-        h1.text-center.create Modósítsd a bejegyzést #{blogs.name}
+        h4.center-align.create Modósítsd a bejegyzést #{blogs.name}
         div(style="width: 60%; margin: 25px auto;")
             form(action="/blogs/" + blogs._id + "?_method=PUT" method='POST')
-                div.form-group
+                div.input-field
+                    input.form-control(type='text' name='name' placeholder='' value= blogs.name)
                     label(for="name") Bejegyzés címe
-                    input.form-control(type='text' name='name' value= blogs.name)
-                div.form-group
+                div.input-field
+                    input.form-control(type='text' name='subname' placeholder='' value= blogs.subname)
                     label(for="subname") Bejegyzés alcíme
-                    input.form-control(type='text' name='subname' value= blogs.subname)
-                div.form-group 
-                    label(for="status") Állapot
-                    select.select.form-control(class="form-control" name="status")
-                        option(value="public") Nyilvános
-                        option(value="private") Privát
-                div.form-group
+                div(class="input-field")
+                    select(name="status" required)
+                        option(value="" disabled selected) Állapot
+                        option(value="nyilvános") Nyilványos
+                        option(value="privát") Privát
+                div.input-field
+                    input.form-control(type='text' pattern="^https:\/\/images\.unsplash\.com\/.*" title="Csak az unsplash.com-ról tudsz feltenni képet lásd alul a linken" name='image' id="image" placeholder="https://images.unsplash.com/..." value= blogs.image)
                     label(for="image")  Fő kép
-                    input.form-control(type='text' pattern="^https:\/\/images\.unsplash\.com\/.*" title="Csak az unsplash.com-ról tudsz feltenni képet lásd alul a linken" name='image' id="image" value= blogs.image)
-                div.form-group
+                    <small>Kattints <a href="https://www.youtube.com/watch?v=ti__fa9ET6Q&feature=youtu.be" target="_blank">ide</a> hogy megnézd hogy kell az url linket bemásolni</small>
+                div.input-field
                     textarea(name="description" rows="10" cols="95") #{blogs.description}
-                div.form-group
-                    button.btn.btn-lg.btn-danger Módosítom!
+                div.input-field
+                    button.waves-effect.waves-light.btn Módosítom!
                 a.back(href='/blogs') vissza
-        
-        
-    
 include ../partials/footer
+

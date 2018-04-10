@@ -1,14 +1,31 @@
 
 
 
-
 <!-- jQuery CDN -->
 script(src='https://code.jquery.com/jquery-3.1.1.min.js'
   integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8='
   crossorigin='anonymous')
   
 <!-- Bootstrap JS CDN -->
-script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous')
+script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js")
 <!-- Own js -->
 script(src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js")
 script(rel='javascript', src='/javascripts/ckeditor.js')
+script(rel='javascript', src='/javascripts/sidenav.js')
+footer.page-footer
+  .container
+    .row
+      .col.l6.s12
+        img(src="http://res.cloudinary.com/dghumjujo/image/upload/v1523360551/csirkecomb-logo.png" class="responsive-img chiken-logo-nav" width="50px" heigth="20px")
+        p.grey-text.text-lighten-4 Csirkecomb
+        h6.grey-text.text-lighten-4 Olvasd! Írd le! Hírdesd!
+      .col.l4.offset-l2.s12
+        ul.links
+          li.links
+            a.grey-text.text-lighten-3(href='/about') Rólunk
+          li
+            a.grey-text.text-lighten-3(href='/contact') Kapcsolat
+  .footer-copyright
+    .container
+      | &copy; 2018 Már majdnem cég GihonFed
+      a.grey-text.text-lighten-4.right(href='#!') Mégis miez?

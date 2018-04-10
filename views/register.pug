@@ -1,49 +1,30 @@
 include ./partials/header
-div.container-fluid
+div.container.card.new-card
     div.row
-        div.col-md-7.left
-            div.container.left-content
-                div.row
-                    div.col-md-7
-                        h1.left.title Üdvözöllek
-                        h3.left.head Regisztrálj a csirkecomb honlapján
-                        h5.left-head-content A csirkecomb egy olyan oldal ahol megtudod osztani a bizonyságaidat a barátaiddal, hogy bátoríthasd őket. Ez a honlap azért jött létre mert fontosnak tartjuk, hogy egy közösség jöjjön létre erre. Ha még nem regisztráltál akkor tedd meg és utánna oszd meg amit isten veled tett. Ez a honlap azért jött létre mert fontosnak tartjuk, hogy egy közösség jöjjön létre erre. Ha még nem regisztráltál akkor tedd meg és utánna oszd meg amit isten veled tett.
-                        a(href="/login")
-                            button.btn.btn-lg.btn-primary.sign-up.already-btn Nekem már van fiókom
-        div.col-md-5.right
-            div.form-div
-                form(action="/register" method="POST")
-                    div.form-group
-                        label(for="username") felhasználónév
-                        input.form-control(type="text" name="username" value= username placeholder="felhasználónév*" pattern=".{3,15}" required title="Muszáj hogy 3 és 5 karakter között legyen.")
-                    div.form-group
-                        label(for="firstname") Keresztnév
-                        input.form-control(type="text" name="firstname" value= firstname placeholder="Keresztnév*" pattern=".{3,15}" required title="Muszáj hogy 3 és 5 karakter között legyen." )
-                    div.form-group
-                        label(for="lastname") Vezetéknév
-                        input.form-control(type="text" name="lastname" value= lastname placeholder="Vezetéknév*" pattern=".{3,15}" required title="Muszáj hogy 3 és 5 karakter között legyen.")
-                    div.form-group
-                        label(for="email") Email
-                        input.form-control(type="email" name="email" value= email placeholder="email-cím*" required)
-                    div.form-group
-                        label(for="avatar") Profilkép
-                        input.form-control(type="text" name="avatar" value= avatar placeholder="profilkep url" id="#user-image-set")
-                    div.from-group.password
-                        label(for="password") Jelszó
-                        input.form-control(type="password" name="password" placeholder="jelszó" pattern=".{8,20}" title="A jelszónak muszáj 5 és 20 karakter között kell lennie.")
-                    div.from-group.password
-                        label(for="password2") Jelszó Mégegyszer
-                        input.form-control(type="password" name="password2" placeholder="jelszó mégegyszer" pattern=".{8,20}" title="A jelszónak muszáj 5 és 20 karakter között kell lennie.")
-                    div.form-group
-                        label(for="bio") Bio
-                    div.form-group
-                        textarea(name="bio" rows="3" cols="45" placeholder="Írj egy rövid bemutatkozást magadról vagy esetleg ha van akkor szolgálatodról." type="bio")
-                    div.from-group.admin
-                        label(for="adminCode") Admincode
-                        input.form-control(type="password" name="adminCode" placeholder="Admin Code")
-                        p.admin-code-title Ez csak akkor kell ha rendelkezel ilyennel
-                    div.form-group
-                        button.btn.btn-lg.btn-primary.sign-up-page-btn Készen állok a belépésre
-
+        h4.center-align.create Regisztráció 
+        div(style="width: 60%; margin: 25px auto;")
+            form(action="/register" method="POST")
+                div.input-field
+                    input.form-control(type="text" name="username" required)
+                    label(for="username") Felhasználó név
+                div.input-field
+                    input.form-control(type="email" name="email"  required)
+                    label(for="username") Email
+                div.input-field
+                    input.form-control(type="text" name="avatar"   id="#user-image-set")
+                    label(for="avatar") Profilkép
+                div.input-field
+                    input.form-control(type="password" name="password"  pattern=".{8,20}" title="A jelszónak muszáj 5 és 20 karakter között kell lennie.")
+                    label(for="password") Jelszó
+                div.input-field
+                    input.form-control(type="password" name="password2"  pattern=".{8,20}" title="A jelszónak muszáj 5 és 20 karakter között kell lennie.")
+                    label(for="password2") Jelszó Mégegyszer
+                div.input-field
+                    textarea(name="bio" rows="10" cols="75" placeholder="Írj egy rövid bemutatkozást magadról vagy esetleg ha van akkor szolgálatodról.")
+                    label(for="bio") Magadról
+                    br
+                div.input-field
+                    button.waves-effect.waves-light.btn Regisztrálok
+                a.back(href='/login') vissza
 include ./partials/footer
 

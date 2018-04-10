@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 body {
-    background-color: #2A2F38;
+    background-color: #F1F1F1;
 }
 
 .author-img {
@@ -7,6 +8,33 @@ body {
     height: 25px;
     border-radius: 50%;
     background-size: cover !important;
+}
+
+.main-card-img {
+    background-size: cover;
+    padding-top: 200px;
+}
+
+.btn-floating i {
+    width: inherit;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 40px;
+}
+
+.card-title {
+    color: #fff;
+    position: unset;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    padding: 24px;
+}
+
+.card-blogs {
+    height: 480px !important;
 }
 
 .line {
@@ -39,11 +67,11 @@ body {
 
 .post-title {
     text-align: left;
-    color: #fff;
+    color: #000;
 }
 
 .show-more-aut {
-    margin-left: -35px;
+    margin-left: 0px;
 }
 
 .show-more-aut li {
@@ -101,8 +129,19 @@ li:nth-child(3n) {
     padding-left: 3px;
 }
 
+.search-tool {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    display: block;
+    margin: auto;
+    width: 50%;
+    border-bottom: 1px solid #848484;
+}
+
 .jumbotron {
-    background-color: #2A2F38;
+    background-color: transparent;
+    margin-top: 100px;
+    margin-left: 10px;
 }
 
 .sub-blog-name {
@@ -117,13 +156,15 @@ li:nth-child(3n) {
 
 .blog-name {
     text-align: center;
-    color: #fff;
+    color: #242424;
     margin-top: 10%;
+    margin-bottom: 1px;
 }
 
 .blog-author {
-    color: #fff;
+    color: #16c72e;
     text-align: center;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .blog-desc {

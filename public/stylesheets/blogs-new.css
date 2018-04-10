@@ -1,11 +1,13 @@
-.create{
-	color: #fff;
-	padding-top: 50px;
-	padding-bottom: 50px;
+.create {
+    color: #424242;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
-small{
-	color: #fff;
+
+small {
+    color: #808080;
 }
+
 label {
     display: inline-block;
     max-width: 100%;
@@ -14,14 +16,18 @@ label {
     color: #fff;
 }
 
-input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
     background-color: rgb(0, 0, 0.0);
     background-image: none;
     color: rgb(0, 0, 0);
 }
-.btn-danger{
-	width: 20%;
+
+.btn-danger {
+    width: 20%;
 }
-.back{
-	margin-left: 3%;
+
+.back {
+    margin-left: 3%;
 }

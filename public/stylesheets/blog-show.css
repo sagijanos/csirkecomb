@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,400i,700,700i');
 #like-button {
     color: #000;
     font-size: 25px;
@@ -17,7 +18,7 @@
 }
 
 .blog-date {
-    color: #fff;
+    color: #808080;
     text-align: center;
 }
 
@@ -25,6 +26,7 @@
     line-height: 23px;
     color: #000;
     text-align: left;
+    font-family: 'Playfair Display SC', serif;
 }
 
 .content-desc {
@@ -39,8 +41,14 @@
     margin-top: 50px;
 }
 
+.main-bg {
+    background-size: cover;
+    padding-top: 300px;
+    padding-bottom: 300px;
+}
+
 .blog-subname {
-    color: #fff;
+    color: #242424;
     text-align: center;
 }
 
@@ -75,6 +83,20 @@
 .username {
     padding-left: 3px;
     color: #000;
+    padding-top: 15px;
+}
+
+.btn-small {
+    height: 32.4px;
+    line-height: 32.4px;
+    font-size: 13px;
+    float: right;
+    background-color: #18A777;
+    color: #fff;
+}
+
+.btn-red {
+    background-color: #F44336;
 }
 
 .comment-text {
@@ -110,7 +132,8 @@
 .add-commet-btn {}
 
 em {
-    padding-left: 0.5%;
+    margin-top: -20px;
+    font-size: 10px;
 }
 
 .well {

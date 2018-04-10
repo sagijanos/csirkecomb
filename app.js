@@ -20,6 +20,7 @@ var ObjectID = require("mongodb").ObjectID;
 
 // configure dotenv
 require('dotenv').load();
+moment.locale('hu');
 moment().format();
 // helpers 
 

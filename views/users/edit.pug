@@ -1,20 +1,21 @@
 include ../partials/header
-div.container
+div.container.card.new-card
     div.row
-        h1.text-center.create Frissítsd a profilod
+        h4.center-align.create Frissítsd a profilod #{user.username}
         div(style="width: 60%; margin: 25px auto;")
             form(action="/users/" + user._id + "?_method=PUT" method="POST")
-                div.form-group
+                div.input-field
                     input.form-control(type="text" name="username" value= user.username)
-                div.form-group
-                    input.form-control(type="text" name="firstname" value= user.firstname)
-                div.form-group
-                    input.form-control(type="text" name="lastname" value= user.lastname)
-                div.form-group
+                    label(for="username") Felhasználó név
+                div.input-field
                     input.form-control(type="text" name="avatar" value= user.avatar id="#user-image-set")
-                div.form-group
-                    textarea(name="bio" rows="7" cols="75") !{user.bio}
-                div.form-group
-                    button.btn.btn-lg.btn-primary.sign-up-page-btn Frissitem a profilom
-
+                    label(for="avatar") Avatár
+                div.input-field
+                    textarea(name="bio" rows="10" cols="75") !{user.bio}
+                    label(for="bio") Magadról
+                    br
+                div.input-field
+                    button.waves-effect.waves-light.btn Frissitem!
+                a.back(href='/users/' + user._id) vissza
 include ../partials/footer
+

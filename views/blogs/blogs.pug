@@ -1,33 +1,27 @@
 include ../partials/header 
 div.container
-    header.jumbotron
-        if success && success.length > 0
-            div.alert.alert-success(role="alert") #{success}
-        img(src= "http://res.cloudinary.com/dghumjujo/image/upload/v1521103604/cs6.gif" width="300" heigth="300")
-        p.newsfeed.text-center Aktuális Hírfolyam
+    div.row
+        header.jumbotron
+            form(action="/blogs" method="GET")
+                div.input-field
+                    i.fa.fa-search
+                    input.form-control(type="submit" value="Search" id="search")
+                    input.form-control(type="text" name="search" placeholder="bejegyzés keresése" id="search")
     div.container  
-       if noMatch !== null
-             h3.nomatch #{noMatch}
-       div.container
-            div.row
-                div.container.mega-box
-                    each item in blogs
-                        div.col-md-6.col-sm-12
-                            div.card.test-box
-                                ul.personal-text
-                                    li #{moment(item.createAt).fromNow()}
-                                    li 
-                                        i.fa.fa-user
-                                    li #{item.author.username}
-                                div.caption
-                                    h2.post-title #{item.name}
-                                h6.post-content !{item.description.substring(0, 200)}...
-                                p
-                                    ul.show-more-aut
-                                        li
-                                            a(href='/blogs/' + item._id class="btn btn-primary" id="showmore") Mutass többet...
-                                        li.aut-img
-                                            div.author-img( style="background: url(" + item.author.avatar + ")")
-                            
-
+        if noMatch !== null
+            h3.nomatch #{noMatch}
+div.container
+    div.row
+        each item in blogs
+            div.col.s12.m6
+                div.card.card-blogs
+                    div.card-image.main-card-img(style="background: url(" + item.image + ")")
+                        span.card-title #{item.name}
+                        a( href="/blogs/"+ item._id  class="btn-floating halfway-fab waves-effect waves-light red") 
+                            <i class="fa fa-book"></i>
+                    div.card-content
+                        h6.post-content !{item.description.substring(0, 100)}...
+                        div.author-img( style="background: url(" + item.author.avatar + ")")
+                        h5 #{item.author.username}
+                        h6 #{moment(item.createAt).fromNow()}
 include ../partials/footer

@@ -10,7 +10,8 @@ html
     meta(property="og:description", content="Ahol bizonyságaidat tudod megosztani")
     meta(property="og:image", content="http://res.cloudinary.com/dghumjujo/image/upload/v1521629269/csirkecomb.png")
     title= title
-    link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin="anonymous")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css")
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
     link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet", integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN", crossorigin="anonymous")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/header.css')
@@ -18,43 +19,60 @@ html
     link(rel='stylesheet', href='/stylesheets/blogs-new.css')
     link(rel='stylesheet', href='/stylesheets/blog-show.css')
     link(rel='stylesheet', href='/stylesheets/contact.css')
+    link(rel='stylesheet', href='/stylesheets/dashboard.css')
     script(src='https://www.google.com/recaptcha/api.js')     
   body
-    div(id="fb-root")  
-  nav.navbar.navbar-default
-    div.container
-        div.navbar-header
-            button(type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar')
-              span.sr-only Toggle navigation
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-            a.navbar-brand(href="/")
-              img.img-responsive.chiken-logo-header(src="http://res.cloudinary.com/dghumjujo/image/upload/v1521321553/chiken.png" width="25" heigth="37")
-        div(id='navbar' class='collapse navbar-collapse')
-          ul.nav.navbar-nav
+    div(id="fb-root")
+  nav(class="grey darken-3")
+    div(class="container")
+      div(class="nav-wrapper")
+        a(href="/blogs" class="brand-logo center")
+          img(src="http://res.cloudinary.com/dghumjujo/image/upload/v1523360551/csirkecomb-logo.png" class="responsive-img chiken-logo-nav" width="50px" heigth="20px")
+        ul(class="right hide-on-small-only")
+          if !currentUser
             li
-                a(href="/blogs") Főoldal
+              a(href="/login") Belépés
             li
-              p
-                form.form-inline(action="/blogs" method="GET")
-                  div.form-group.search-tool
-                    input.form-control(type="submit" value="Search" class="btn btn-default" id="search")
-                    i.fa.fa-search
-                    input.form-control(type="text" name="search" placeholder="bejegyzés keresése" id="search")
-          ul.nav.navbar-nav.navbar-right
-              if !currentUser
-                  li
-                    a(href="/login") Bejelentkezés
-                  li
-                    a(href="/register") Regisztráció
-              else
-                  li
-                    a(href="/blogs/new") bejegyzés hozzáadása 
-                  li
-                    a.welcome-user(href="/users/" + currentUser._id ) #{currentUser.username}
-                  li
-                    a(href="/contact") Kapcsolat 
-                  li
-                    a(href="/logout") Kijelentkezés
-    block content
+              a(href="/register") 
+                <i class="fa fa-sign-out"></i>  Regisztráció
+            li
+          else
+            li
+              a(href="/users/" + currentUser._id) 
+                <i class="fa fa-book"></i> Bizonyságaim
+            li
+              a(href="/blogs/new") 
+                <i class="fa fa-plus"></i> Létrehozás
+        ul#slide-out.sidenav
+          if !currentUser
+            li 
+              img(src="http://res.cloudinary.com/dghumjujo/image/upload/v1523360551/csirkecomb-logo.png" class="responsive-img chiken-logo" width="70px" heigth="20px")
+              p.align-center Csirkecomb
+            hr
+            li
+              p.align-center Jelentkezz be
+              a(href="/auth/google"  class="waves-effect waves-light btn google-btn")  Google   
+            li 
+              
+            li   
+              a(href="/login"  class="waves-effect waves-light btn email-btn")  Email  
+          else
+            li
+              div.user-view
+                div.background
+                a(href='#user')
+                  div.circle-person(id="user-avatar" class="menu-user-avatar" style="background: url(" + currentUser.avatar + ")")
+                a(href='#name')
+                  span.black-text.name #{currentUser.username}
+                a(href='#email')
+                  span.black-text.email #{currentUser.email}
+            li
+              a(href='/users/dashboard/' + currentUser._id) Irányítópult
+            li
+                a(href='/logout') Kijelentkezés
+            li
+              .divider
+            li
+        a.sidenav-trigger(href='#', data-target='slide-out' class="show-on-large")
+          <i class="fa fa-bars"></i>
+  block content
