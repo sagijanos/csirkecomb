@@ -1,15 +1,17 @@
 include ./partials/header
-div.row
-    div.col.s12.m4.l2
-    div.col.s12.m4.l8
-        h3.left-align.login-text Bejelentkezés
-        form(action="/login" method="POST" class="col s12")
-            div.input-fieldi
-                input.validate(type="text" name="username" id="first_name" placeholder="felhasználó")
-            div.input-field
-                input.validate(type="password" name="password" id="password" placeholder="Jelszó")
-            div.input-field
-                button.btn.btn-lg.btn-primary.sign-in Bejelentkezés
-                a(href="/forgot") 
-                    p.forgotPassword Elfelejtetted a jelszódat?           
-    div.col.s12.m4.l2
+main
+    div.row
+        div.col.s12.m4.l2
+        div.col.s12.m4.l8
+            h3.left-align.login-text Bejelentkezés
+            form(action="/login" method="POST" class="col s12")
+                div.input-fieldi
+                    input.validate(type="text" name="username" id="first_name" placeholder="felhasználó")
+                div.input-field
+                    input.validate(type="password" name="password" id="password" placeholder="Jelszó")
+                div.input-field
+                    button.btn.btn-lg.btn-primary.sign-in Bejelentkezés
+                    a(href="/forgot") 
+                        p.forgotPassword Elfelejtetted a jelszódat?           
+        div.col.s12.m4.l2
+include ./partials/footer

@@ -1,7 +1,8 @@
 include ../partials/header
-div.container.card.new-card
-    div.row
-        h4.center-align.create Modósítsd a bejegyzést #{blogs.name}
+main
+    div.container.card.new-card
+        div.row
+            h4.center-align.create Modósítsd a bejegyzést #{blogs.name}
         div(style="width: 60%; margin: 25px auto;")
             form(action="/blogs/" + blogs._id + "?_method=PUT" method='POST')
                 div.input-field

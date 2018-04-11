@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300');
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display+SC:400,400i,700,700i');
-body {}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
 
 thumbnail img {
     width: 100%;

@@ -1,27 +1,29 @@
-include ../partials/header 
-div.container
-    div.row
-        header.jumbotron
-            form(action="/blogs" method="GET")
-                div.input-field
-                    i.fa.fa-search
-                    input.form-control(type="submit" value="Search" id="search")
-                    input.form-control(type="text" name="search" placeholder="bejegyzés keresése" id="search")
-    div.container  
-        if noMatch !== null
-            h3.nomatch #{noMatch}
-div.container
-    div.row
-        each item in blogs
-            div.col.s12.m6
-                div.card.card-blogs
-                    div.card-image.main-card-img(style="background: url(" + item.image + ")")
-                        span.card-title #{item.name}
-                        a( href="/blogs/"+ item._id  class="btn-floating halfway-fab waves-effect waves-light red") 
-                            <i class="fa fa-book"></i>
-                    div.card-content
-                        h6.post-content !{item.description.substring(0, 100)}...
-                        div.author-img( style="background: url(" + item.author.avatar + ")")
-                        h5 #{item.author.username}
-                        h6 #{moment(item.createAt).fromNow()}
+include ../partials/header
+header 
+    div.container
+        div.row
+            header.jumbotron
+                form(action="/blogs" method="GET")
+                    div.input-field
+                        i.fa.fa-search
+                        input.form-control(type="submit" value="Search" id="search")
+                        input.form-control(type="text" name="search" placeholder="bejegyzés keresése" id="search")
+        div.container  
+            if noMatch !== null
+                h3.nomatch #{noMatch}
+main
+    div.container
+        div.row
+            each item in blogs
+                div.col.s12.m6
+                    div.card.card-blogs
+                        div.card-image.main-card-img(style="background: url(" + item.image + ")")
+                            span.card-title #{item.name}
+                            a( href="/blogs/"+ item._id  class="btn-floating halfway-fab waves-effect waves-light red") 
+                                <i class="fa fa-book"></i>
+                        div.card-content
+                            h6.post-content !{item.description.substring(0, 100)}...
+                            div.author-img( style="background: url(" + item.author.avatar + ")")
+                            h5 #{item.author.username}
+                            h6 #{moment(item.createAt).fromNow()}
 include ../partials/footer

@@ -1,47 +1,49 @@
 include ../partials/header 
-div.row
-    div.col.s12.m6.user-info
-        div.circle-person(id="user-avatar" class="user-avatar" style="background: url(" + user.avatar + ")")
-        h4.user-name #{user.username} 
-            span
-                a(href="/users/" + user.id + "/edit") <i class="fa fa-pencil pen"></i></span></a> 
-    div.col.s12.m6.bio-info
-        ul(class="collapsible" data-collapsible = "accordion")
-            li
-                div(class="collapsible-header") <i class="material-icons">lightbulb_outline</i>Rólam</div>
-                div(class="collapsible-body") 
-                    if user.bio.length < 1
-                        a(href="/users/" + user.id + "/edit")
-                            p.profile-text Kérlek adj hozzá valamit
-                    span !{user.bio}
-if(blog.length > 0)
+header
     div.row
-    h5.posts #{user.username} bejegyzései
-    div.container
-            div.row
-                each item in blog
-                    div.col.s12.m6
-                        div.card.card-blogs
-                            div.card-image.main-card-img(style="background: url(" + item.image + ")")
-                                span.card-title #{item.name}
-                                a( href="/blogs/" + item._id class="btn-floating halfway-fab waves-effect waves-light red") 
-                                    <i class="fa fa-book"></i>
-                            div.card-content
-                                h6.post-content !{item.description.substring(0, 50)}...
-                                div.author-img( style="background: url(" + item.author.avatar + ")")
-                                p #{item.author.username}
-                                p #{moment(item.createAt).fromNow()}
-                                if(item.status == "nyilvános")
-                                    p.green-text #{item.status}
-                                else
-                                    p.red-text #{item.status}
-                                if currentUser && item.author.id.equals(currentUser._id)
-                                    form(action="/blogs/" + item._id + "?_method=DELETE" method="POST") 
-                                        button(class="waves-effect waves-light btn-small btn-red") Törlés  
-                                    a( href="/blogs/" +item._id + "/edit" class="waves-effect waves-light btn-small user-button") Modosítás
-else 
-    p.center-align Még nincsenek bizonyságaid
-    p.center-align Kattintsd a gombra és hozd létre az elsőt
-    a(class="btn center-align create-button" href="/blogs/new")
-        <i class="fa fa-smile-o"></i> Írd meg
+        div.col.s12.m6.user-info
+            div.circle-person(id="user-avatar" class="user-avatar" style="background: url(" + user.avatar + ")")
+            h4.user-name #{user.username} 
+                span
+                    a(href="/users/" + user.id + "/edit") <i class="fa fa-pencil pen"></i></span></a> 
+        div.col.s12.m6.bio-info
+            ul(class="collapsible" data-collapsible = "accordion")
+                li
+                    div(class="collapsible-header") <i class="material-icons">lightbulb_outline</i>Rólam</div>
+                    div(class="collapsible-body") 
+                        if user.bio.length < 1
+                            a(href="/users/" + user.id + "/edit")
+                                p.profile-text Kérlek adj hozzá valamit
+                        span !{user.bio}
+main
+    if(blog.length > 0)
+        div.row
+        h5.posts #{user.username} bejegyzései
+        div.container
+                div.row
+                    each item in blog
+                        div.col.s12.m6
+                            div.card.card-blogs
+                                div.card-image.main-card-img(style="background: url(" + item.image + ")")
+                                    span.card-title #{item.name}
+                                    a( href="/blogs/" + item._id class="btn-floating halfway-fab waves-effect waves-light red") 
+                                        <i class="fa fa-book"></i>
+                                div.card-content
+                                    h6.post-content !{item.description.substring(0, 50)}...
+                                    div.author-img( style="background: url(" + item.author.avatar + ")")
+                                    p #{item.author.username}
+                                    p #{moment(item.createAt).fromNow()}
+                                    if(item.status == "nyilvános")
+                                        p.green-text #{item.status}
+                                    else
+                                        p.red-text #{item.status}
+                                    if currentUser && item.author.id.equals(currentUser._id)
+                                        form(action="/blogs/" + item._id + "?_method=DELETE" method="POST") 
+                                            button(class="waves-effect waves-light btn-small btn-red") Törlés  
+                                        a( href="/blogs/" +item._id + "/edit" class="waves-effect waves-light btn-small user-button") Modosítás
+    else 
+        p.center-align Még nincsenek bizonyságaid
+        p.center-align Kattintsd a gombra és hozd létre az elsőt
+        a(class="btn center-align create-button" href="/blogs/new")
+            <i class="fa fa-smile-o"></i> Írd meg
 include ../partials/footer

@@ -1,49 +1,51 @@
-include ../partials/header 
-div.container-fluid
+include ../partials/header
+header 
+    div.container-fluid
+        div.row
+                h1.blog-name #{blog.name}
+                h3.blog-subname #{blog.subname}
+                a(href="/users/public/" + blog.author.id)
+                    p.blog-author #{blog.author.username}
+                p.blog-date készítette: #{moment(blog.createAt).fromNow()}
+                div.main-bg(style="background: url(" + blog.image + ")")
+main 
+    div.row.content-desc.card
+        div.col.s12.m4.l2
+        div.col.s12.m4.l8
+            h1.sub-blog-name #{blog.name}
+            h3.sub-blog-subname #{blog.subname}
+            p.blog-desc !{blog.description}
+            if currentUser && blog.author.id.equals(currentUser._id)
+                form(action="/blogs/" + blog._id + "?_method=DELETE" method="POST" id="delete-form")
+                    button.btn.btn-danger.delete Törlés
+                    a.btn.btn-success.btn-md.edit(href="/blogs/" +blog._id + "/edit") Modósítás
+        div.col.s12.m4.l2
     div.row
-            h1.blog-name #{blog.name}
-            h3.blog-subname #{blog.subname}
-            a(href="/users/public/" + blog.author.id)
-                p.blog-author #{blog.author.username}
-            p.blog-date készítette: #{moment(blog.createAt).fromNow()}
-            div.main-bg(style="background: url(" + blog.image + ")") 
-div.row.content-desc.card
-    div.col.s12.m4.l2
-    div.col.s12.m4.l8
-         h1.sub-blog-name #{blog.name}
-         h3.sub-blog-subname #{blog.subname}
-         p.blog-desc !{blog.description}
-         if currentUser && blog.author.id.equals(currentUser._id)
-            form(action="/blogs/" + blog._id + "?_method=DELETE" method="POST" id="delete-form")
-                button.btn.btn-danger.delete Törlés
-                a.btn.btn-success.btn-md.edit(href="/blogs/" +blog._id + "/edit") Modósítás
-    div.col.s12.m4.l2
-div.row
-    div.container.card
-        div.col.s12.m6
-        div.col.s12.m5
-            if !currentUser
-                h5  Jelentkezz be ha hozzá szeretnél szólni.
-                a(href="/login") Kattints ide hogy be tudj jelentkezni.
-            if currentUser
-                h4 Szólj hozzá 
-                form(id="add-comment-form" action="/blogs/" + blog._id + "/comment" method="POST")
-                    div.form-group
-                        input(class="form-control" type="text" disabled value=currentUser.username)
-                    div.form-group
-                        textarea(class="form-control" name="text" placeholder="hozzászólok..." form="add-comment-form" rows="5" cols="70")
-                    div.form-group
-                        button.btn.btn-success.btn-sm Hozzáadom 
-            if blog.comments.length === 0
-                    div.row
-                        div.col.s12.m1
-                        div.col.s12.m6
-                            em(style="color: grey; padding-bottom: 50px;") Még nincs hozzászólás...
-div.row 
-    each comment in blog.comments
-        div.col.s12.m6
-            div.card
-                h5.username #{comment.author.username} 
-                p.comment-text #{comment.text}
-                p.comment-date #{moment(comment.createAt).fromNow()}
+        div.container.card
+            div.col.s12.m6
+            div.col.s12.m5
+                if !currentUser
+                    h5  Jelentkezz be ha hozzá szeretnél szólni.
+                    a(href="/login") Kattints ide hogy be tudj jelentkezni.
+                if currentUser
+                    h4 Szólj hozzá 
+                    form(id="add-comment-form" action="/blogs/" + blog._id + "/comment" method="POST")
+                        div.form-group
+                            input(class="form-control" type="text" disabled value=currentUser.username)
+                        div.form-group
+                            textarea(class="form-control" name="text" placeholder="hozzászólok..." form="add-comment-form" rows="5" cols="70")
+                        div.form-group
+                            button.btn.btn-success.btn-sm Hozzáadom 
+                if blog.comments.length === 0
+                        div.row
+                            div.col.s12.m1
+                            div.col.s12.m6
+                                em(style="color: grey; padding-bottom: 50px;") Még nincs hozzászólás...
+    div.row 
+        each comment in blog.comments
+            div.col.s12.m6
+                div.card
+                    h5.username #{comment.author.username} 
+                    p.comment-text #{comment.text}
+                    p.comment-date #{moment(comment.createAt).fromNow()}
 include ../partials/footer
