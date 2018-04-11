@@ -27,48 +27,19 @@ router.get("/register", function(req, res, next) {
 });
 
 // Show sign up form register form letrehozasa post 
-router.post("/register", function(req, res, next) {
-    var errors = [];
+router.post("/register", function(req, res) {
+    var newUser = new User({ username: req.body.username, bio: req.body.bio, email: req.body.email, avatar: req.body.avatar });
+    User.register(newUser, req.body.password, function(err, user) {
+        if (err) {
+            req.flash("error", err.message);
+            return res.render("register");
+        }
 
-    if (req.body.password !== req.body.password2) {
-        errors.push({ text: 'A jelszo nem egyezik meg' });
-    }
-    if (errors.length > 0) {
-        res.render("register", {
-            username: req.body.username,
-            bio: req.body.bio,
-            email: req.body.email,
-            avatar: req.body.avatar
+        passport.authenticate("local")(req, res, function() {
+            res.redirect("/users/" + user._id);
         });
-    } else {
-        var newUser = new User({
-            username: req.body.username,
-            bio: req.body.bio,
-            email: req.body.email,
-            avatar: req.body.avatar,
-            password: req.body.password
-        });
-        bcrypt.genSalt(10, function(err, salt) {
-            bcrypt.hash(newUser.password, salt, function(err, hash) {
-                if (err) throw err;
-                newUser.password = hash;
-                newUser.save()
-                    .then(user => {
-                        req.flash('success', 'Sikeres regisztráció most már bejelentkezhetsz');
-                        res.redirect('/login');
-
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        return;
-                    });
-            });
-        });
-    }
+    });
 });
-
-
-
 
 // ==============
 // belepesii utak LOG IN
@@ -79,6 +50,16 @@ router.post("/register", function(req, res, next) {
 router.get("/login", function(req, res, next) {
     res.render("login");
 });
+
+router.post(
+    "/login",
+    passport.authenticate("local", {
+        successRedirect: "/blogs",
+        failureRedirect: "/login",
+        failureFlash: true
+    }),
+    function(req, res) {}
+);
 
 
 
@@ -103,15 +84,7 @@ router.get('/auth/google/callback',
 
 
 // Megcsinalni a login logikat
-router.post(
-    "/login",
-    passport.authenticate("local", {
-        successRedirect: "/blogs",
-        failureRedirect: "/login",
-        failureFlash: true
-    }),
-    function(req, res) {}
-);
+
 // ==============
 // belepesii utak LOG OUT
 //===============

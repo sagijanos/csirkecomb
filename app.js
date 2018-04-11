@@ -52,6 +52,7 @@ app.use(require("express-session")({
 // ez kell meg a passporthoz de ez a vegen kell 
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
 
 
 app.use(methodOverride("_method"));
@@ -97,19 +98,6 @@ passport.deserializeUser((id, done) => {
 });
 
 // passport local with email login
-passport.use(new LocalStrategy((username, password, done) => {
-    User.findOne({ username: username }, (err, user) => {
-        if (err) { return done(err); }
-
-        if (!user) {
-            return done(null, false, { message: 'Érvénytelen felhasználó' });
-        }
-        if (user) {
-            console.log(user);
-        }
-        return done(null, user);
-    });
-}));
 
 
 
