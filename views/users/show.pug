@@ -16,34 +16,34 @@ header
                                 p.profile-text Kérlek adj hozzá valamit
                         span !{user.bio}
 main
-    if(blog.length > 0)
+    if blog.length > 0 
         div.row
-        h5.posts #{user.username} bejegyzései
+        h5.posts #{user.username} bizonyságaid
         div.container
                 div.row
                     each item in blog
                         div.col.s12.m6
                             div.card.card-blogs
-                                div.card-image.main-card-img(style="background: url(" + item.image + ")")
+                                div.card-image.main-card-img(style="background: url(" + item.imageup + ")")
                                     span.card-title #{item.name}
-                                    a( href="/blogs/" + item._id class="btn-floating halfway-fab waves-effect waves-light red") 
+                                    a( href="/blogs/" + item._id class="btn-floating halfway-fab waves-effect waves-red red") 
                                         <i class="fa fa-book"></i>
                                 div.card-content
                                     h6.post-content !{item.description.substring(0, 50)}...
                                     div.author-img( style="background: url(" + item.author.avatar + ")")
                                     p #{item.author.username}
                                     p #{moment(item.createAt).fromNow()}
-                                    if(item.status == "nyilvános")
+                                    if item.status == "nyilvános"
                                         p.green-text #{item.status}
                                     else
                                         p.red-text #{item.status}
                                     if currentUser && item.author.id.equals(currentUser._id)
                                         form(action="/blogs/" + item._id + "?_method=DELETE" method="POST") 
-                                            button(class="waves-effect waves-light btn-small btn-red") Törlés  
-                                        a( href="/blogs/" +item._id + "/edit" class="waves-effect waves-light btn-small user-button") Modosítás
+                                            button(class="waves-effect waves-red btn-small btn-red") Törlés  
+                                        a( href="/blogs/" +item._id + "/edit" class="waves-effect waves-green btn-small user-button") Modosítás
     else 
         p.center-align Még nincsenek bizonyságaid
         p.center-align Kattintsd a gombra és hozd létre az elsőt
-        a(class="btn center-align create-button" href="/blogs/new")
+        a(class="btn center-align create-button waves-red" href="/blogs/new")
             <i class="fa fa-smile-o"></i> Írd meg
 include ../partials/footer

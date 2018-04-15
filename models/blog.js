@@ -4,6 +4,7 @@ var blogSchema = new mongoose.Schema({
     name: String,
     image: String,
     description: String,
+    imageup: String,
     subname: String,
     status: {
         type: String,

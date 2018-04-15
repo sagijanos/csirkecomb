@@ -1,22 +1,23 @@
 include ./partials/header
-div.container
-    div.row
-        h1.text-center.create Írj nekünk
-        div(style="width: 60%; margin: 25px auto;")
-            form(action="/contact", method="POST")
-                div.form-group
-                    label(for="name") Neved
-                    input.form-control(type='text' name='name' placeholder='Kérlek írd le a neved')
-                div.form-group
-                    label(for="email") Email
-                    input.form-control(type='email' name='email' placeholder='Kérlek írd le az email-címed')
-                div.form-group
-                    label(for="message") Üzeneted
-                div.form-group
-                    textarea(name="message" rows="10" cols="45")
-                div.form-group
-                    button.btn.btn-lg.btn-danger Küldés
-                div.form-group
-                    div.g-recaptcha(data-sitekey="6LeVFUwUAAAAANUgchJYQoiq2gDNDOVSmu6D-l2h")
+main
+    div.container.card
+        div.row
+            h1.text-center.create Írj nekünk
+            div(style="width: 60%; margin: 25px auto;")
+                form(action="/contact", method="POST")
+                    div.input-field
+                        label(for="name") Neved
+                        input.form-control(type='text' name='name' placeholder='Kérlek írd le a neved')
+                    div.input-field
+                        label(for="email") Email
+                        input.form-control(type='email' name='email' placeholder='Kérlek írd le az email-címed')
+                    div.input-field
+                        label(for="message") Üzeneted
+                    div.input-field
+                        textarea(name="message" rows="10" cols="45")
+                    div.input-field
+                        button.btn.btn-lg.btn-danger Küldés
+                    div.input-field
+                        div.g-recaptcha(data-sitekey="6LeVFUwUAAAAANUgchJYQoiq2gDNDOVSmu6D-l2h")
 
 include ./partials/footer

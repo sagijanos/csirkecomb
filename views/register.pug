@@ -1,30 +1,31 @@
 include ./partials/header
-div.container.card.new-card
-    div.row
-        h4.center-align.create Regisztráció 
-        div(style="width: 60%; margin: 25px auto;")
-            form(action="/register" method="POST")
-                div.input-field
-                    input.form-control(type="text" name="username" required)
-                    label(for="username") Felhasználó név
-                div.input-field
-                    input.form-control(type="email" name="email"  required)
-                    label(for="username") Email
-                div.input-field
-                    input.form-control(type="text" name="avatar"   id="#user-image-set")
-                    label(for="avatar") Profilkép
-                div.input-field
-                    input.form-control(type="password" name="password"  pattern=".{8,20}" title="A jelszónak muszáj 5 és 20 karakter között kell lennie.")
-                    label(for="password") Jelszó
-                div.input-field
-                    input.form-control(type="password" name="password2"  pattern=".{8,20}" title="A jelszónak muszáj 5 és 20 karakter között kell lennie.")
-                    label(for="password2") Jelszó Mégegyszer
-                div.input-field
-                    textarea(name="bio" rows="10" cols="75" placeholder="Írj egy rövid bemutatkozást magadról vagy esetleg ha van akkor szolgálatodról.")
-                    label(for="bio") Magadról
-                    br
-                div.input-field
-                    button.waves-effect.waves-light.btn Regisztrálok
-                a.back(href='/login') vissza
+main
+    div.container.card.new-card
+        div.row
+            h4.center-align.create Regisztráció 
+            div(style="width: 60%; margin: 25px auto;")
+                form(action="/register" method="POST")
+                    div.input-field
+                        input.form-control(type="text" name="username" required)
+                        label(for="username") Felhasználó név
+                    div.input-field
+                        input.form-control(type="email" name="email"  required)
+                        label(for="username") Email
+                    div.input-field
+                        input.form-control(type="text" name="avatar"   id="#user-image-set")
+                        label(for="avatar") Profilkép
+                    div.input-field
+                        input.form-control(type="password" name="password"  pattern=".{8,20}" title="A jelszónak muszáj 5 és 20 karakter között kell lennie.")
+                        label(for="password") Jelszó
+                    div.input-field
+                        input.form-control(type="password" name="password2"  pattern=".{8,20}" title="A jelszónak muszáj 5 és 20 karakter között kell lennie.")
+                        label(for="password2") Jelszó Mégegyszer
+                    div.input-field
+                        textarea(name="bio" rows="10" cols="75" placeholder="Írj egy rövid bemutatkozást magadról vagy esetleg ha van akkor szolgálatodról.")
+                        label(for="bio") Magadról
+                        br
+                    div.input-field
+                        button.waves-effect.waves-light.btn Regisztrálok
+                    a.back(href='/login') vissza
 include ./partials/footer
 

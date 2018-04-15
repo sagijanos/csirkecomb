@@ -447,6 +447,7 @@ select {
     display: block;
     margin: auto;
     height: auto;
+    margin-bottom: 100px;
 }
 
 .user-button {

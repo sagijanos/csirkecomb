@@ -3,11 +3,28 @@ var router = express.Router();
 var Blog = require("../models/blog");
 var socialSharing = require('social-share');
 var middleware = require("../middleware"); //var middleware = require("../middleware")//itt azert nincs tovabbi fajl mert ha index.js a neve akkor auto tudja az express hogy az az.
+var multer = require("multer");
+//INDEX - image upload to cloudnary
+var storage = multer.diskStorage({
+    filename: function(req, file, callback) {
+        callback(null, Date.now() + file.originalname);
+    }
+});
+var imageFilter = function(req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter })
 
-
-
-//Test social- sharing
-
+var cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: process.env.CLOUDNARYNAME,
+    api_key: process.env.CLOUDNARYAPIKEY,
+    api_secret: process.env.CLOUDNARYAPISECRET
+});
 
 
 //INDEX - show all posts
@@ -39,28 +56,24 @@ router.get("/blogs", function(req, res) {
     }
 }); // ez a vege a teljes route-nak
 
-router.post("/blogs", middleware.isLoggedin, function(req, res) {
-    var name = req.body.name;
-    var subname = req.body.subname;
-    var image = req.body.image;
-    var description = req.body.description;
-    var status = req.body.status;
-    var author = {
-        id: req.user._id,
-        username: req.user.username,
-        avatar: req.user.avatar
-    }
-    var newblog = { name: name, subname: subname, image: image, status: status, description: description, author: author }
-    Blog.create(newblog, function(err, newly) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(newly);
-            res.redirect("/blogs");
-        }
+router.post("/blogs", middleware.isLoggedin, upload.single('imageup'), function(req, res) {
+    cloudinary.uploader.upload(req.file.path, function(result) {
+        req.body.testamony.imageup = result.secure_url;
+        req.body.testamony.author = {
+            id: req.user._id,
+            username: req.user.username,
+            avatar: req.user.avatar
+        };
+        Blog.create(req.body.testamony, function(err, testamony) {
+            if (err) {
+                console.log('something went wrong');
+                return res.redirect('back');
+            }
+            res.redirect('/blogs');
+            console.log(testamony);
+        });
     });
 });
-
 
 router.get("/blogs/new", middleware.isLoggedin, function(req, res) {
     res.render("blogs/new");

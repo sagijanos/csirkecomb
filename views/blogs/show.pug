@@ -7,7 +7,10 @@ header
                 a(href="/users/public/" + blog.author.id)
                     p.blog-author #{blog.author.username}
                 p.blog-date készítette: #{moment(blog.createAt).fromNow()}
-                div.main-bg(style="background: url(" + blog.image + ")")
+                if blog.imageup.length > 0
+                    div.main-bg(style="background: url(" + blog.imageup + ")")
+                else
+                    div.main-bg(style="background: url(" + blog.image + ")")
 main 
     div.row.content-desc.card
         div.col.s12.m4.l2

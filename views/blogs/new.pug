@@ -4,24 +4,23 @@ main
         div.row
             h4.center-align.create Írj egy új bizonyságot
             div(style="width: 60%; margin: 25px auto;")
-                form(action='/blogs' method='POST')
+                form(action='/blogs' method='POST' enctype="multipart/form-data")
                     div.input-field
-                        input.form-control(type='text' name='name' placeholder='')
-                        label(for="name") Bejegyzés címe
+                        input.form-control(type='text' name='testamony[name]' placeholder='')
+                        label(for="name") Bizonyságod címe
                     div.input-field
-                        input.form-control(type='text' name='subname' placeholder='')
-                        label(for="subname") Bejegyzés alcíme
+                        input.form-control(type='text' name='testamony[subname]' placeholder='')
+                        label(for="subname") alcíme
                     div(class="input-field")
-                        select(name="status" required)
-                            option(value="" disabled selected) Állapot
-                            option(value="nyilvános") Nyilványos
+                        select(name="testamony[status]" required)
+                            option(value="nyilvános" selected) Nyilványos
                             option(value="privát") Privát
                     div.input-field
-                        input.form-control(type='text' pattern="^https:\/\/images\.unsplash\.com\/.*" title="Csak az unsplash.com-ról tudsz feltenni képet lásd alul a linken" name='image' id="image" placeholder="https://images.unsplash.com/...")
-                        label(for="image")  Fő kép
-                        <small>Kattints <a href="https://www.youtube.com/watch?v=ti__fa9ET6Q&feature=youtu.be" target="_blank">ide</a> hogy megnézd hogy kell az url linket bemásolni</small>
+                        p A megfelelő kép minőségért <a href="https://unsplash.com/" target="_blank">inenn</a> válasz képet
                     div.input-field
-                        textarea(name="description" rows="30" cols="95" id="editor")
+                        input.form-control(type="file" id="imageup" name="imageup" accept="image/*" required)
+                    div.input-field
+                        textarea(name="testamony[description]" rows="30" cols="95" id="editor")
                     div.input-field
                         button.waves-effect.waves-light.btn Létrehozom!
                     a.back(href='/blogs') vissza
